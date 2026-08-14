@@ -53,10 +53,10 @@ necesidades, emociones y oportunidades de mejora de cada perfil.
 
 ## 🗺️ Roadmap
 
-- [x] Definición del producto 100%
-- [x] User Personas 100%
-- [x] Business Flow 100%
-- [] User Journeys 33%
+- [x] Definición del producto 
+- [x] User Personas 
+- [x] Business Flow 
+- [ ] User Journeys 
 - [ ] Diseño UI
 - [ ] Design System
 - [ ] Prototipo interactivo
