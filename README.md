@@ -10,6 +10,31 @@ El proyecto abarca el proceso completo de creación de producto:
 
 ---
 
+## 💡 Sobre VeteApp
+
+VeteApp nace con el objetivo de centralizar la gestión diaria de una
+veterinaria en una única plataforma.
+
+La aplicación busca facilitar la administración de pacientes, mascotas,
+turnos, historias clínicas e inventario, simplificando tareas que
+habitualmente se encuentran distribuidas entre diferentes herramientas.
+
+### 🎯 Objetivo
+
+Diseñar una experiencia simple e intuitiva que permita optimizar la
+gestión de la veterinaria y mejorar el acceso a la información de cada
+paciente.
+
+---
+
+## 🔎 Proceso de diseño
+
+El proyecto se está desarrollando siguiendo un proceso iterativo:
+
+**Research → Definición → User Personas → User Journeys → User Flows → UI → Desarrollo**
+
+A continuación se documenta la evolución del proyecto.
+
 ## 🎯 Visión del producto
 
 El proceso comenzó con la definición de la visión del producto,
@@ -123,10 +148,9 @@ para completar las principales tareas dentro de VeteApp.
 
 ---
 
-## 🎨 Próxima etapa
+## 🛠️ Herramientas
 
-Actualmente estoy finalizando la etapa de **UX Design**.
+**Diseño y prototipado:** Figma
 
-El próximo paso será desarrollar la interfaz visual de VeteApp,
-incluyendo el **Design System, componentes, pantallas y prototipo
-interactivo en Figma**.
+> El stack técnico de la aplicación será documentado al comenzar
+> la etapa de desarrollo.
