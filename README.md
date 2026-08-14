@@ -1,81 +1,132 @@
 # 🐾 VeteApp
- 🚧 Proyecto en desarrollo — actualmente en etapa de diseño UX/UI.
 
-VeteApp es una aplicación de gestión para veterinarias que estoy
-diseñando y desarrollando desde cero como proyecto personal.
+> 🚧 Proyecto en desarrollo — actualmente en etapa de diseño UX/UI.
 
-El objetivo del proyecto es trabajar sobre el ciclo completo de creación
-de un producto digital: desde la investigación y definición de la
-experiencia de usuario hasta el diseño de interfaz y posterior desarrollo
-de la aplicación.
+VeteApp es una aplicación de gestión veterinaria diseñada y desarrollada
+desde cero como proyecto personal.
 
-## 🎯 Objetivo del proyecto
+El proyecto abarca el proceso completo de creación de producto:
+**UX Research → UX Design → UI Design → Desarrollo.**
 
-Diseñar una herramienta que permita centralizar y simplificar diferentes
-procesos de gestión de una veterinaria dentro de una misma aplicación.
+---
 
-## 🔎 Proceso UX
+## 🎯 Visión del producto
 
-Actualmente el proyecto se encuentra en su etapa de UX.
+El proceso comenzó con la definición de la visión del producto,
+estableciendo el propósito y los principales objetivos de VeteApp.
 
-Hasta el momento trabajé en:
+![Visión de VeteApp](docs/ux/vision.png)
 
-- Definición del producto
-- Análisis del problema
-- User Personas
-- Product Information
-- Business Flow
-- User Journeys
-- Identificación de necesidades y oportunidades
+---
 
-## 🧑‍🎨 UX Research
+## 🔎 Definición del problema
 
-### User Personas
+Se analizaron los principales problemas y necesidades que busca resolver
+la aplicación.
+
+![Definición del problema](docs/ux/problema.png)
+
+---
+
+## 👥 Necesidades de los usuarios
+
+A partir del análisis inicial se identificaron las principales
+necesidades de los usuarios de la plataforma.
+
+![Necesidades de usuarios](docs/ux/necesidades-usuarios.png)
+
+---
+
+## 👤 User Personas
 
 Se definieron diferentes perfiles de usuario para comprender sus
-necesidades, objetivos y puntos de dolor.
+objetivos, necesidades y puntos de dolor.
 
-![User Personas]
+![User Personas](docs/ux/personas.png)
 
-### Business Flow
+---
 
-Se diseñó el flujo general del negocio para entender las principales
-interacciones dentro de la aplicación.
+## 📋 Información del producto
 
-![Business Flow]
+Se definieron las principales características y funcionalidades
+necesarias para responder a las necesidades identificadas.
 
-### User Journeys
+![Información del producto](docs/ux/informacion-producto.png)
 
-Se desarrollaron distintos User Journeys para analizar el recorrido,
-necesidades, emociones y oportunidades de mejora de cada perfil.
+---
 
-![User Journey]
+## 🔄 Business Flow
 
-## 🗺️ Roadmap
+Se diseñó el flujo general del negocio para representar las principales
+acciones y decisiones dentro de la plataforma.
 
-- [x] Definición del producto 
-- [x] User Personas 
-- [x] Business Flow 
-- [ ] User Journeys 
+![Business Flow](docs/ux/business-flow.png)
+
+---
+
+# 🗺️ User Journeys
+
+Se analizaron los recorridos de diferentes perfiles de usuario,
+identificando acciones, emociones, pain points y oportunidades de mejora.
+
+### Mariana
+
+![User Journey Mariana](docs/ux/user-journey-mariana.png)
+
+### Agostina
+
+![User Journey Agostina](docs/ux/user-journey-agostina.png)
+
+### Carlos
+
+![User Journey Carlos](docs/ux/user-journey-carlos.png)
+
+---
+
+# 🔀 User Flows
+
+A partir de los User Journeys se diseñaron los flujos necesarios
+para completar las principales tareas dentro de VeteApp.
+
+### Mariana
+
+![User Flow Mariana](docs/ux/user-flow-mariana.png)
+
+### Agostina
+
+🚧 En desarrollo.
+
+### Carlos
+
+🚧 En desarrollo.
+
+---
+
+## 🗺️ Estado del proyecto
+
+- [x] Visión del producto
+- [x] Definición del problema
+- [x] Necesidades de usuario
+- [x] User Personas
+- [x] Información del producto
+- [x] Business Flow
+- [x] User Journeys
+- [ ] User Flows
 - [ ] Diseño UI
 - [ ] Design System
-- [ ] Prototipo interactivo
-- [ ] Arquitectura de la aplicación
+- [ ] Prototipo
 - [ ] Desarrollo Frontend
-- [ ] Backend / APIs
+- [ ] Backend
 - [ ] Testing
 - [ ] Product Analytics
 - [ ] Deploy
 
-## 🛠️ Tecnologías
-
-### Diseño
-- Figma
-
-### Desarrollo
-La arquitectura y el stack definitivo serán documentados antes de
-comenzar la etapa de desarrollo.
-
 ---
-💡 Este repositorio documenta la evolución de VeteApp desde la etapa
-inicial de UX hasta su implementación.
+
+## 🎨 Próxima etapa
+
+Actualmente estoy finalizando la etapa de **UX Design**.
+
+El próximo paso será desarrollar la interfaz visual de VeteApp,
+incluyendo el **Design System, componentes, pantallas y prototipo
+interactivo en Figma**.
