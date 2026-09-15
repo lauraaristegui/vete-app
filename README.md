@@ -69,7 +69,7 @@ Se definieron tres perfiles principales:
 - **Agostina — Veterinaria**
 - **Carlos — Dueño de mascota**
 
-![User Personas](docs/ux/flow/personas.png)
+![User Personas](docs/ux/flows/personas.png)
 
 ---
 
@@ -78,7 +78,7 @@ Se definieron tres perfiles principales:
 A partir de la investigación se definieron las principales funcionalidades
 necesarias para responder a los problemas identificados.
 
-![Información del producto](docs/ux/flow/informacion-producto.png)
+![Información del producto](docs/ux/flows/informacion-producto.png)
 
 ---
 
@@ -88,7 +88,7 @@ Se diseñó el flujo general de atención dentro de la veterinaria,
 desde la solicitud de un turno hasta el registro de una consulta
 en la historia clínica del paciente.
 
-![Business Flow](docs/ux/flow/business-flow.png)
+![Business Flow](docs/ux/flows/business-flow.png)
 
 ---
 
@@ -99,15 +99,15 @@ identificando acciones, necesidades, pain points y oportunidades.
 
 ### Mariana — Recepcionista
 
-![User Journey Mariana](docs/ux/flow/user-journey-mariana.png)
+![User Journey Mariana](docs/ux/flows/user-journey-mariana.png)
 
 ### Agostina — Veterinaria
 
-![User Journey Agostina](docs/ux/flow/user-journey-agostina.png)
+![User Journey Agostina](docs/ux/flows/user-journey-agostina.png)
 
 ### Carlos — Dueño de mascota
 
-![User Journey Carlos](docs/ux/flow/user-journey-carlos.png)
+![User Journey Carlos](docs/ux/flows/user-journey-carlos.png)
 
 ---
 
@@ -118,7 +118,7 @@ las principales tareas dentro de la plataforma.
 
 ### Flujo de recepción
 
-![User Flow Mariana](docs/ux/flow/user-flow-mariana.png)
+![User Flow Mariana](docs/ux/flows/user-flow-mariana.png)
 
 ---
 
