@@ -41,7 +41,7 @@ y los principales flujos de trabajo dentro de una veterinaria.
 
 Se definieron el propósito, los objetivos y la propuesta inicial del producto.
 
-![Visión de VeteApp](docs/ux/vision.png)
+![Visión de VeteApp](docs/ux/flow/vision.png)
 
 ---
 
@@ -49,7 +49,7 @@ Se definieron el propósito, los objetivos y la propuesta inicial del producto.
 
 Se analizaron los principales problemas que busca resolver la plataforma.
 
-![Definición del problema](docs/ux/problema.png)
+![Definición del problema](docs/ux/flow//problema.png)
 
 ---
 
@@ -57,7 +57,7 @@ Se analizaron los principales problemas que busca resolver la plataforma.
 
 Se identificaron las principales necesidades de los usuarios de la plataforma.
 
-![Necesidades de usuarios](docs/ux/necesidades-usuarios.png)
+![Necesidades de usuarios](docs/ux/flow/necesidades-usuarios.png)
 
 ---
 
@@ -69,7 +69,7 @@ Se definieron tres perfiles principales:
 - **Agostina — Veterinaria**
 - **Carlos — Dueño de mascota**
 
-![User Personas](docs/ux/personas.png)
+![User Personas](docs/ux/flow/personas.png)
 
 ---
 
@@ -78,7 +78,7 @@ Se definieron tres perfiles principales:
 A partir de la investigación se definieron las principales funcionalidades
 necesarias para responder a los problemas identificados.
 
-![Información del producto](docs/ux/informacion-producto.png)
+![Información del producto](docs/ux/flow/informacion-producto.png)
 
 ---
 
@@ -88,7 +88,7 @@ Se diseñó el flujo general de atención dentro de la veterinaria,
 desde la solicitud de un turno hasta el registro de una consulta
 en la historia clínica del paciente.
 
-![Business Flow](docs/ux/business-flow.png)
+![Business Flow](docs/ux/flow/business-flow.png)
 
 ---
 
@@ -99,15 +99,15 @@ identificando acciones, necesidades, pain points y oportunidades.
 
 ### Mariana — Recepcionista
 
-![User Journey Mariana](docs/ux/user-journey-mariana.png)
+![User Journey Mariana](docs/ux/flow/user-journey-mariana.png)
 
 ### Agostina — Veterinaria
 
-![User Journey Agostina](docs/ux/user-journey-agostina.png)
+![User Journey Agostina](docs/ux/flow/user-journey-agostina.png)
 
 ### Carlos — Dueño de mascota
 
-![User Journey Carlos](docs/ux/user-journey-carlos.png)
+![User Journey Carlos](docs/ux/flow/user-journey-carlos.png)
 
 ---
 
@@ -118,7 +118,7 @@ las principales tareas dentro de la plataforma.
 
 ### Flujo de recepción
 
-![User Flow Mariana](docs/ux/user-flow-mariana.png)
+![User Flow Mariana](docs/ux/flow/user-flow-mariana.png)
 
 ---
 
@@ -165,7 +165,7 @@ El Design System define:
 - Componentes de pacientes
 - Componentes clínicos
 
-![Design System](docs/ui/design-system/design%20system.png)
+![Design System](docs/ui/design-system/design-system.png)
 
 ---
 
@@ -175,25 +175,25 @@ El Design System define:
 
 Búsqueda y gestión inicial de clientes y mascotas.
 
-![Recepción](docs/ui/High-Fidelity%20Screens/Reception.png)
+![Recepción](docs/ui/docs/ui/High-Fidelity-Screens/Reception.png)
 
 ## Agenda
 
 Gestión de turnos y disponibilidad.
 
-![Agenda](docs/ui/High-Fidelity%20Screens/agenda.png)
+![Agenda](docs/ui/docs/ui/High-Fidelity-Screens/agenda.png)
 
 ## Clientes y mascotas
 
 Administración de información de clientes y sus mascotas.
 
-![Clientes y mascotas](docs/ui/High-Fidelity%20Screens/pet.png)
+![Clientes y mascotas](docs/ui/docs/ui/High-Fidelity-Screens/pet.png)
 
 ## Historia clínica
 
 Gestión de consultas e historial clínico de los pacientes.
 
-![Historia clínica](docs/ui/High-Fidelity%20Screens/History%20Clinical.png)
+![Historia clínica](docs/ui/docs/ui/High-Fidelity-Screens/History-clinical.png)
 
 ---
 
