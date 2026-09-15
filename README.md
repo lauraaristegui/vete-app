@@ -1,44 +1,45 @@
 # 🐾 VeteApp
 
-> 🚧 Proyecto en desarrollo — actualmente en etapa de diseño UX/UI.
+> 🚀 Proyecto personal de diseño y desarrollo de una plataforma de gestión veterinaria.
 
 VeteApp es una aplicación de gestión veterinaria diseñada y desarrollada
 desde cero como proyecto personal.
 
-El proyecto abarca el proceso completo de creación de producto:
-**UX Research → UX Design → UI Design → Desarrollo.**
+El proyecto aborda el proceso completo de creación de producto:
+
+**UX Research → UX Design → UI Design → Desarrollo**
+
+Actualmente se encuentra finalizada la primera etapa de **UX/UI y prototipado**,
+y comienza la etapa de **desarrollo de la aplicación**.
 
 ---
 
-## 💡 Sobre VeteApp
+## 🎯 Objetivo del producto
 
-VeteApp nace con el objetivo de centralizar la gestión diaria de una
-veterinaria en una única plataforma.
+VeteApp busca centralizar la gestión diaria de una veterinaria,
+facilitando el trabajo de recepción y profesionales veterinarios.
 
-La aplicación busca facilitar la administración de pacientes, mascotas,
-turnos, historias clínicas e inventario, simplificando tareas que
-habitualmente se encuentran distribuidas entre diferentes herramientas.
+La plataforma permite gestionar:
 
-### 🎯 Objetivo
+- Clientes y mascotas
+- Turnos y agenda
+- Información de pacientes
+- Consultas veterinarias
+- Historias clínicas
+- Seguimiento de pacientes
 
-Diseñar una experiencia simple e intuitiva que permita optimizar la
-gestión de la veterinaria y mejorar el acceso a la información de cada
-paciente.
+El inventario y gestión de stock quedan contemplados para una futura versión.
 
 ---
 
-## 🔎 Proceso de diseño
+# 🔎 UX Research & UX Design
 
-El proyecto se está desarrollando siguiendo un proceso iterativo:
-
-**Research → Definición → User Personas → User Journeys → User Flows → UI → Desarrollo**
-
-A continuación se documenta la evolución del proyecto.
+El proceso comenzó analizando el problema, las necesidades de los usuarios
+y los principales flujos de trabajo dentro de una veterinaria.
 
 ## 🎯 Visión del producto
 
-El proceso comenzó con la definición de la visión del producto,
-estableciendo el propósito y los principales objetivos de VeteApp.
+Se definieron el propósito, los objetivos y la propuesta inicial del producto.
 
 ![Visión de VeteApp](docs/ux/vision.png)
 
@@ -46,8 +47,7 @@ estableciendo el propósito y los principales objetivos de VeteApp.
 
 ## 🔎 Definición del problema
 
-Se analizaron los principales problemas y necesidades que busca resolver
-la aplicación.
+Se analizaron los principales problemas que busca resolver la plataforma.
 
 ![Definición del problema](docs/ux/problema.png)
 
@@ -55,8 +55,7 @@ la aplicación.
 
 ## 👥 Necesidades de los usuarios
 
-A partir del análisis inicial se identificaron las principales
-necesidades de los usuarios de la plataforma.
+Se identificaron las principales necesidades de los usuarios de la plataforma.
 
 ![Necesidades de usuarios](docs/ux/necesidades-usuarios.png)
 
@@ -64,17 +63,20 @@ necesidades de los usuarios de la plataforma.
 
 ## 👤 User Personas
 
-Se definieron diferentes perfiles de usuario para comprender sus
-objetivos, necesidades y puntos de dolor.
+Se definieron tres perfiles principales:
+
+- **Mariana — Recepcionista**
+- **Agostina — Veterinaria**
+- **Carlos — Dueño de mascota**
 
 ![User Personas](docs/ux/personas.png)
 
 ---
 
-## 📋 Información del producto
+## 📋 Definición del producto
 
-Se definieron las principales características y funcionalidades
-necesarias para responder a las necesidades identificadas.
+A partir de la investigación se definieron las principales funcionalidades
+necesarias para responder a los problemas identificados.
 
 ![Información del producto](docs/ux/informacion-producto.png)
 
@@ -82,8 +84,9 @@ necesarias para responder a las necesidades identificadas.
 
 ## 🔄 Business Flow
 
-Se diseñó el flujo general del negocio para representar las principales
-acciones y decisiones dentro de la plataforma.
+Se diseñó el flujo general de atención dentro de la veterinaria,
+desde la solicitud de un turno hasta el registro de una consulta
+en la historia clínica del paciente.
 
 ![Business Flow](docs/ux/business-flow.png)
 
@@ -91,18 +94,18 @@ acciones y decisiones dentro de la plataforma.
 
 # 🗺️ User Journeys
 
-Se analizaron los recorridos de diferentes perfiles de usuario,
-identificando acciones, emociones, pain points y oportunidades de mejora.
+Se analizaron los recorridos de los diferentes perfiles de usuario,
+identificando acciones, necesidades, pain points y oportunidades.
 
-### Mariana
+### Mariana — Recepcionista
 
 ![User Journey Mariana](docs/ux/user-journey-mariana.png)
 
-### Agostina
+### Agostina — Veterinaria
 
 ![User Journey Agostina](docs/ux/user-journey-agostina.png)
 
-### Carlos
+### Carlos — Dueño de mascota
 
 ![User Journey Carlos](docs/ux/user-journey-carlos.png)
 
@@ -110,36 +113,131 @@ identificando acciones, emociones, pain points y oportunidades de mejora.
 
 # 🔀 User Flows
 
-A partir de los User Journeys se diseñaron los flujos necesarios
-para completar las principales tareas dentro de VeteApp.
+Los User Flows permitieron definir cómo los usuarios realizan
+las principales tareas dentro de la plataforma.
 
-### Mariana
+### Flujo de recepción
 
 ![User Flow Mariana](docs/ux/user-flow-mariana.png)
 
-### Agostina
+---
 
-🚧 En desarrollo.
+# ✏️ Wireframes
 
-### Carlos
+Antes de comenzar el diseño visual se desarrollaron wireframes
+para validar la estructura, jerarquía de información y navegación.
 
-🚧 En desarrollo.
+Los wireframes incluyen los principales módulos de la aplicación:
+
+- Recepción
+- Agenda
+- Clientes y mascotas
+- Historia clínica
+- Registro de consultas
+
+Los archivos se encuentran disponibles en:
+
+`docs/ux/wiframes/`
 
 ---
 
-## 🗺️ Estado del proyecto
+# 🎨 UI Design
+
+A partir de los wireframes se desarrollaron las pantallas High-Fidelity
+y un Design System reutilizable para mantener consistencia visual
+en toda la aplicación.
+
+## 🧩 Design System
+
+El Design System define:
+
+- Paleta de colores
+- Tipografía
+- Espaciados
+- Bordes y radios
+- Estados semánticos
+- Inputs
+- Selects
+- Botones y variantes
+- Navegación
+- Cards
+- Componentes de agenda
+- Componentes de pacientes
+- Componentes clínicos
+
+![Design System](docs/ui/design-system/design%20system.png)
+
+---
+
+# 🖥️ High-Fidelity Screens
+
+## Recepción
+
+Búsqueda y gestión inicial de clientes y mascotas.
+
+![Recepción](docs/ui/High-Fidelity%20Screens/Reception.png)
+
+## Agenda
+
+Gestión de turnos y disponibilidad.
+
+![Agenda](docs/ui/High-Fidelity%20Screens/agenda.png)
+
+## Clientes y mascotas
+
+Administración de información de clientes y sus mascotas.
+
+![Clientes y mascotas](docs/ui/High-Fidelity%20Screens/pet.png)
+
+## Historia clínica
+
+Gestión de consultas e historial clínico de los pacientes.
+
+![Historia clínica](docs/ui/High-Fidelity%20Screens/History%20Clinical.png)
+
+---
+
+# 🔗 Prototipo interactivo
+
+Se desarrolló un prototipo navegable en Figma para validar los principales
+flujos antes de comenzar la implementación.
+
+El prototipo permite recorrer, entre otros, el flujo:
+
+**Buscar paciente → Historia clínica → Iniciar consulta → Agregar medicamento → Finalizar consulta → Ver detalle**
+
+👉 **[Ver prototipo interactivo en Figma](PEGAR_ACA_TU_LINK_DE_FIGMA)**
+
+---
+
+# 🏗️ Arquitectura del producto
+
+El MVP se organiza en cuatro áreas principales:
+
+**Recepción → Agenda → Clientes/Mascotas → Historia Clínica**
+
+La relación principal del dominio es:
+
+**Cliente → Mascota → Historia clínica → Consultas**
+
+Esto permite mantener un historial clínico longitudinal para cada paciente.
+
+---
+
+# 📌 Estado del proyecto
 
 - [x] Visión del producto
 - [x] Definición del problema
 - [x] Necesidades de usuario
 - [x] User Personas
-- [x] Información del producto
 - [x] Business Flow
 - [x] User Journeys
-- [ ] User Flows
-- [ ] Diseño UI
-- [ ] Design System
-- [ ] Prototipo
+- [x] User Flows principales
+- [x] Wireframes
+- [x] Design System
+- [x] High-Fidelity Screens
+- [x] Prototipo interactivo
+- [ ] Arquitectura Frontend
 - [ ] Desarrollo Frontend
 - [ ] Backend
 - [ ] Testing
@@ -148,9 +246,37 @@ para completar las principales tareas dentro de VeteApp.
 
 ---
 
-## 🛠️ Herramientas
+# 🚀 Próxima etapa
 
-**Diseño y prototipado:** Figma
+Con el **MVP de UX/UI finalizado**, comienza la etapa de desarrollo.
 
-> El stack técnico de la aplicación será documentado al comenzar
-> la etapa de desarrollo.
+El siguiente objetivo es transformar el diseño y los flujos definidos
+en una aplicación funcional, comenzando por la arquitectura Frontend,
+routing, layouts, componentes reutilizables y modelos de dominio.
+
+---
+
+## 🛠️ Tecnologías
+
+### Diseño
+
+- Figma
+- UX Research
+- UX Design
+- UI Design
+- Design Systems
+- Prototipado
+
+### Desarrollo
+
+La arquitectura y tecnologías de desarrollo serán documentadas
+a medida que avance la implementación.
+
+---
+
+## 👩‍💻 Autora
+
+**María Laura Aristegui**  
+Frontend Software Engineer
+
+Proyecto personal desarrollado como parte de mi portfolio profesional.
