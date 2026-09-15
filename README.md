@@ -41,7 +41,7 @@ y los principales flujos de trabajo dentro de una veterinaria.
 
 Se definieron el propósito, los objetivos y la propuesta inicial del producto.
 
-![Visión de VeteApp](docs/ux/flow/vision.png)
+![Visión de VeteApp](docs/ux/flows/vision.png)
 
 ---
 
@@ -49,7 +49,7 @@ Se definieron el propósito, los objetivos y la propuesta inicial del producto.
 
 Se analizaron los principales problemas que busca resolver la plataforma.
 
-![Definición del problema](docs/ux/flow//problema.png)
+![Definición del problema](docs/ux/flows//problema.png)
 
 ---
 
@@ -57,7 +57,7 @@ Se analizaron los principales problemas que busca resolver la plataforma.
 
 Se identificaron las principales necesidades de los usuarios de la plataforma.
 
-![Necesidades de usuarios](docs/ux/flow/necesidades-usuarios.png)
+![Necesidades de usuarios](docs/ux/flows/necesidades-usuarios.png)
 
 ---
 
@@ -165,7 +165,7 @@ El Design System define:
 - Componentes de pacientes
 - Componentes clínicos
 
-![Design System](docs/ui/design-system/design-system.png)
+![Design System](docs/ui/desing-system/desing-system.png)
 
 ---
 
@@ -175,25 +175,25 @@ El Design System define:
 
 Búsqueda y gestión inicial de clientes y mascotas.
 
-![Recepción](docs/ui/docs/ui/High-Fidelity-Screens/Reception.png)
+![Recepción](docs/ui/high-fidelity-screens/reception.png)
 
 ## Agenda
 
 Gestión de turnos y disponibilidad.
 
-![Agenda](docs/ui/docs/ui/High-Fidelity-Screens/agenda.png)
+![Agenda](docs/ui/high-fidelity-screens/agenda.png)
 
 ## Clientes y mascotas
 
 Administración de información de clientes y sus mascotas.
 
-![Clientes y mascotas](docs/ui/docs/ui/High-Fidelity-Screens/pet.png)
+![Clientes y mascotas](docs/ui/high-fidelity-screens/pet.png)
 
 ## Historia clínica
 
 Gestión de consultas e historial clínico de los pacientes.
 
-![Historia clínica](docs/ui/docs/ui/High-Fidelity-Screens/History-clinical.png)
+![Historia clínica](docs/ui/high-fidelity-screens/History-clinical.png)
 
 ---
 
@@ -206,7 +206,7 @@ El prototipo permite recorrer, entre otros, el flujo:
 
 **Buscar paciente → Historia clínica → Iniciar consulta → Agregar medicamento → Finalizar consulta → Ver detalle**
 
-👉 **[Ver prototipo interactivo en Figma](PEGAR_ACA_TU_LINK_DE_FIGMA)**
+👉 **[Ver prototipo interactivo en Figma](https://www.figma.com/proto/CDULqb3aOjzXQAQpktotSY/VetFlow?node-id=126-1337&t=YKLK2vvB6C8oM1as-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1)**
 
 ---
 
@@ -220,7 +220,7 @@ La relación principal del dominio es:
 
 **Cliente → Mascota → Historia clínica → Consultas**
 
-Esto permite mantener un historial clínico longitudinal para cada paciente.
+Esto permite mantener un historial clínica longitudinal para cada paciente.
 
 ---
 
