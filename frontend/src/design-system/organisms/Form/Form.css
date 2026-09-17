@@ -1,0 +1,44 @@
+.form {
+  width: 100%;
+  font-family: inherit;
+}
+
+/* WITH DATA */
+
+.form--with-data {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-16);
+}
+
+.form--with-data > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form--with-data strong {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-neutral-900);
+}
+
+.form--with-data span {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: var(--font-weight-regular);
+  color: var(--color-neutral-900);
+}
+
+/* EMPTY */
+
+.form--empty {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-16);
+}
+
+.form__address {
+  grid-column: 1 / -1;
+}

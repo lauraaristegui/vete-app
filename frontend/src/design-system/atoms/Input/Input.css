@@ -1,0 +1,28 @@
+.input {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: var(--spacing-12) var(--spacing-16);
+
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-body-medium);
+  line-height: var(--line-height-body-medium);
+  font-weight: var(--font-weight-regular);
+
+  color: var(--color-neutral-900);
+  background-color: #ffffff;
+
+  border: 1px solid var(--color-neutral-200);
+  border-radius: var(--radius-4);
+
+  outline: none;
+}
+
+.input::placeholder {
+  color: var(--color-neutral-500);
+}
+
+.input-test {
+  margin-top: 24px;
+  width: 600px;
+}

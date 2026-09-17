@@ -1,0 +1,79 @@
+/* Variantes:
+primary
+secondary
+neutral
+destructive
+
+Estados:
+default
+hover
+disabled */
+
+
+.button {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-label-medium);
+  line-height: var(--line-height-label-medium);
+  font-weight: var(--font-weight-semibold);
+
+  border-radius: var(--radius-8);
+  padding: var(--spacing-8) var(--spacing-16);
+  cursor: pointer;
+}
+
+.button--primary {
+  background-color: var(--color-primary-500);
+  color: white;
+  border: 1px solid var(--color-primary-500);
+}
+
+.button--primary:hover {
+  background-color: var(--color-primary-600);
+  border-color: var(--color-primary-600);
+}
+
+.button--secondary {
+  background-color: transparent;
+  color: var(--color-primary-600);
+  border: 1px solid var(--color-primary-500);
+}
+
+.button--secondary:hover {
+  background-color: var(--color-primary-50);
+  border-color: var(--color-primary-600);
+}
+
+.button--neutral {
+  background-color: var(--color-neutral-100);
+  color: var(--color-neutral-700);
+  border: 1px solid var(--color-neutral-300);
+}
+
+.button--neutral:hover {
+  background-color: var(--color-neutral-200);
+}
+
+.button--destructive {
+  background-color: transparent;
+  color: var(--color-red-600);
+  border: 1px solid var(--color-red-500);
+}
+
+.button--destructive:hover {
+  background-color: var(--color-red-50);
+  color: var(--color-red-700);
+  border-color: var(--color-red-600);
+}
+
+.button:disabled {
+  background-color: var(--color-neutral-200);
+  color: var(--color-neutral-400);
+  border-color: var(--color-neutral-200);
+  cursor: not-allowed;
+}
+
+.button-group {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+}

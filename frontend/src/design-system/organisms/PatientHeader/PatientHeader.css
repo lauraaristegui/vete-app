@@ -1,0 +1,43 @@
+.patient-header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-12);
+}
+
+.patient-header__avatar {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+
+  border-radius: 50%;
+  background-color: var(--color-primary-100);
+}
+
+.patient-header__info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.patient-header__info h2 {
+  margin: 0;
+
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-neutral-900);
+}
+
+.patient-header__pet-info {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-neutral-900);
+}
+
+.patient-header__owner {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: var(--font-weight-regular);
+  color: var(--color-neutral-700);
+}

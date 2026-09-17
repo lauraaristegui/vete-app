@@ -1,0 +1,37 @@
+ :root {
+   /* Font family */
+  --font-family-primary: 'Inter', sans-serif;
+
+  /* Font weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Heading */
+  --font-size-heading-large: 32px;
+  --line-height-heading-large: 40px;
+
+  --font-size-heading-medium: 24px;
+  --line-height-heading-medium: 32px;
+
+  --font-size-heading-small: 20px;
+  --line-height-heading-small: 28px;
+
+  /* Body */
+  --font-size-body-large: 18px;
+  --line-height-body-large: 28px;
+
+  --font-size-body-medium: 16px;
+  --line-height-body-medium: 24px;
+
+  --font-size-body-small: 14px;
+  --line-height-body-small: 20px;
+
+  /* Label */
+  --font-size-label-medium: 14px;
+  --line-height-label-medium: 20px;
+
+  --font-size-label-small: 12px;
+  --line-height-label-small: 16px;
+}

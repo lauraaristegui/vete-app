@@ -1,0 +1,13 @@
+.input-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+}
+
+.input-text__label {
+  font-family: var(--font-family-primary);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-neutral-900);
+}

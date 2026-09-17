@@ -1,0 +1,30 @@
+.status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 156px;
+  height: 24px;
+  padding: 4px 8px;
+
+  border-radius: 999px;
+
+  font-family: var(--font-family-primary);
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.status--pending {
+  background-color: var(--color-neutral-100);
+  color: var(--color-neutral-700);
+}
+
+.status--in-consultation {
+  background-color: var(--color-primary-50);
+  color: var(--color-primary-700);
+}
+
+.status--received {
+  background-color: var(--color-success-100);
+  color: var(--color-success-700);
+}

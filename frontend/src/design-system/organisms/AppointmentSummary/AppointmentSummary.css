@@ -1,0 +1,97 @@
+.appointment-summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-24);
+
+  width: 100%;
+  min-height: 410px;
+  padding: var(--spacing-24);
+
+  background-color: #ffffff;
+  border: 1px solid var(--color-neutral-300);
+  border-radius: var(--radius-8);
+}
+
+.appointment-summary__title {
+  margin: 0;
+
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-neutral-900);
+}
+
+.appointment-summary__data {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-24);
+}
+
+.appointment-summary__data > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.appointment-summary__data span {
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-neutral-700);
+}
+
+.appointment-summary__data strong {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: var(--font-weight-regular);
+  color: var(--color-neutral-900);
+}
+
+.appointment-summary__patient {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+
+  width: 355px;
+  padding: var(--spacing-16);
+
+  border: 1px solid var(--color-neutral-300);
+  border-radius: var(--radius-12);
+}
+
+.appointment-summary__avatar {
+  width: 40px;
+  height: 40px;
+
+  border-radius: 50%;
+  background-color: var(--color-primary-100);
+}
+
+.appointment-summary__patient > strong {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-neutral-900);
+}
+
+.appointment-summary__owner {
+  display: flex;
+  flex-direction: column;
+}
+
+.appointment-summary__owner span:first-child {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--color-neutral-500);
+}
+
+.appointment-summary__owner span:last-child,
+.appointment-summary__patient > span {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--color-neutral-700);
+}
+
+.appointment-summary__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-16);
+}
