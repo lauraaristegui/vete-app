@@ -11,6 +11,7 @@
 @import './molecules/Select/Select.css';
 @import './molecules/NavItem/NavItem.css';
 @import './molecules/PetCard/PetCard.css';
+@import './desing-system/desing-system.css';
 @import './organisms/AppointmentRow/AppointmentRow.css';
 @import './organisms/Form/Form.css';
 @import './organisms/SearchResultOwner/SearchResultOwner.css';
