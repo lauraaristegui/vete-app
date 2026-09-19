@@ -11,9 +11,31 @@
 @import './molecules/Select/Select.css';
 @import './molecules/NavItem/NavItem.css';
 @import './molecules/PetCard/PetCard.css';
+@import './molecules/PageHeader/PageHeader.css';
 @import './desing-system/desing-system.css';
+@import './molecules/ActionMenu/ActionMenu.css';
 @import './organisms/AppointmentRow/AppointmentRow.css';
 @import './organisms/Form/Form.css';
 @import './organisms/SearchResultOwner/SearchResultOwner.css';
 @import './organisms/PatientHeader/PatientHeader.css';
 @import './organisms/CardConsultation/CardConsultation.css';
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--font-family-primary);
+}
+
+h2 {
+  margin: 0;
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  line-height: 28px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-neutral-900);
+}

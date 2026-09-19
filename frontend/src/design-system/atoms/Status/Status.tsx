@@ -1,21 +1,16 @@
+import type { AppointmentStatus } from '../../../shared/types/appointment';
 import './Status.css'
 
-export type StatusType =
-  | 'pending'
-  | 'in-consultation'
-  | 'received'
 
-type StatusProps = {
-  status: StatusType
-}
-
-const statusLabels: Record<StatusType, string> = {
-  pending: 'Pendiente',
-  'in-consultation': 'En consulta',
-  received: 'Recepcionado',
-}
-
-export function Status({ status }: StatusProps) {
+const statusLabels: Record<AppointmentStatus, string> = {
+  pending: "Pendiente",
+  received: "Recepcionado",
+  "in-consultation": "En consulta",
+  completed: "Atendido",
+  cancelled: "Cancelado",
+  "no-show": "Ausente",
+};
+export function Status({ status }: { status: AppointmentStatus }) {
   return (
     <span className={`status status--${status}`}>
       {statusLabels[status]}

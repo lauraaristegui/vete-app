@@ -1,12 +1,15 @@
 .appointment-row {
   display: grid;
-  grid-template-columns: 80px 1fr 1fr 1fr 156px 140px;
+  grid-template-columns: 80px 140px 200px 140px 156px 140px;
+column-gap: var(--spacing-24);
+justify-content: space-between;
   align-items: center;
   gap: var(--spacing-16);
 
   width: 100%;
   min-height: 98px;
   padding: 0 var(--spacing-24);
+  box-sizing: border-box;
 
   background-color: #ffffff;
   border: 1px solid var(--color-neutral-300);
@@ -16,7 +19,7 @@
   color: var(--color-neutral-900);
 }
 
-.appointment-row > span {
+.appointment-row>span {
   font-size: 12px;
   line-height: 16px;
   font-weight: var(--font-weight-regular);
@@ -24,6 +27,6 @@
 
 .appointment-row__action {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
 }

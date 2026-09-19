@@ -24,7 +24,20 @@
   flex-shrink: 0;
 
   border-radius: 50%;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   background-color: var(--color-primary-100);
+}
+
+.pet-card__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .pet-card__header h3 {
