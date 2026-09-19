@@ -2,12 +2,19 @@
 
 ### 🚀 In Progress
 
-- Application Shell implementation.
-- Main layout implementation.
-- Routing setup.
-- Initial feature development.
+- Appointment creation flow.
+- Appointment form and scheduling interactions.
+- Appointment lifecycle integration.
+- Veterinary consultation flow.
 
 ---
+## [0.3.1] - 2026-09-16
+## Add
+Application features
+Agenda + Reception
+Appointment status
+Shared state / Context
+
 
 ## [0.3.0] - 2026-09-16
 

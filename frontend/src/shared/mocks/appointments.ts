@@ -1,0 +1,68 @@
+import type { Appointment } from "../types/appointment";
+
+export const appointments: Appointment[] = [
+  {
+    id: "1",
+    time: "09:00",
+    petName: "Luna",
+    ownerName: "Laura Gomez",
+    dni: "32.222.222",
+    status: "received",
+  },
+  {
+    id: "2",
+    time: "10:00",
+    petName: "Mía",
+    ownerName: "Rosario Gomez",
+    dni: "36.547.658",
+    status: "in-consultation",
+  },
+  {
+    id: "3",
+    time: "11:00",
+    petName: "Coco",
+    ownerName: "Carlos Perez",
+    dni: "38.456.789",
+    status: "pending",
+  },
+  {
+    id: "4",
+    time: "11:30",
+    petName: "Simón",
+    ownerName: "Ana Martinez",
+    dni: "29.876.543",
+    status: "pending",
+  },
+  {
+    id: "5",
+    time: "12:00",
+    petName: "Olivia",
+    ownerName: "Mariana Lopez",
+    dni: "34.123.456",
+    status: "pending",
+  },
+    {
+    id: "6",
+    time: "13:00",
+    petName: "Luna",
+    ownerName: "Laura Gomez",
+    dni: "32.222.222",
+    status: "received",
+  },
+    {
+    id: "7",
+    time: "14:00",
+    petName: "Luna",
+    ownerName: "Laura Gomez",
+    dni: "32.222.222",
+    status: "received",
+  },
+    {
+    id: "8",
+    time: "15:00",
+    petName: "Luna",
+    ownerName: "Laura Gomez",
+    dni: "32.222.222",
+    status: "received",
+  },
+];

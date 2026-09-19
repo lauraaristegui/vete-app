@@ -1,20 +1,22 @@
-import Button from '../../atoms/Button/Button'
-import { PetCard } from '../../molecules/PetCard/PetCard'
-import './SearchResultOwner.css'
+import Button from "../../atoms/Button/Button";
+import { PetCard } from "../../molecules/PetCard/PetCard";
+import "./SearchResultOwner.css";
+
 
 type Pet = {
-  id: string
-  name: string
-  info: string
-}
+  id: string;
+  name: string;
+  info: string;
+  species: "dog" | "cat" | "rabbit";
+};
 
 type SearchResultOwnerProps = {
-  name: string
-  dni: string
-  phone: string
-  email: string
-  pets: Pet[]
-}
+  name: string;
+  dni: string;
+  phone: string;
+  email: string;
+  pets: Pet[];
+};
 
 export function SearchResultOwner({
   name,
@@ -25,13 +27,10 @@ export function SearchResultOwner({
 }: SearchResultOwnerProps) {
   return (
     <section className="search-result-owner">
-
       <div className="search-result-owner__header">
         <h3>Resultado de búsqueda</h3>
 
-        <Button variant="secondary">
-          Editar cliente
-        </Button>
+        <Button variant="secondary">Editar cliente</Button>
       </div>
 
       <div className="search-result-owner__data">
@@ -58,9 +57,7 @@ export function SearchResultOwner({
       <div className="search-result-owner__pets-header">
         <h3>Mascota/s</h3>
 
-        <Button variant="secondary">
-          + Agrega mascota
-        </Button>
+        <Button variant="secondary">+ Agrega mascota</Button>
       </div>
 
       <div className="search-result-owner__pets">
@@ -70,10 +67,10 @@ export function SearchResultOwner({
             petName={pet.name}
             petInfo={pet.info}
             ownerName={name}
+            species={pet.species}
           />
         ))}
       </div>
-
     </section>
-  )
+  );
 }
