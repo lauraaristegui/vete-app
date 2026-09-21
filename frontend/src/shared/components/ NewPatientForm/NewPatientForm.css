@@ -85,13 +85,10 @@
 
 .new-patient-form__pet-row {
   display: grid;
-  grid-template-columns: 1fr 1fr 160px;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: var(--spacing-16);
-
-  /* antes: align-items: end; */
   align-items: start;
 }
-
 /* CAMPOS */
 
 .new-patient-form__field {
@@ -111,7 +108,7 @@
 
 /* INPUTS */
 
-.new-patient-form input {
+/* .new-patient-form input {
   width: 100%;
   min-height: 40px;
 
@@ -133,7 +130,7 @@
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease;
-}
+} */
 
 .new-patient-form input::placeholder {
   color: var(--color-neutral-400);

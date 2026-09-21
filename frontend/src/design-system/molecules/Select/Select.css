@@ -2,11 +2,12 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-8);
+
   width: 100%;
-  padding: var(--spacing-12);
   box-sizing: border-box;
-  background-color: #ffffff;
-  border-radius: var(--radius-4);
+
+  /* Sin padding exterior:
+     debe alinearse con los demás fields del formulario */
 }
 
 .select__label {
@@ -14,40 +15,56 @@
   font-size: 14px;
   line-height: 20px;
   font-weight: var(--font-weight-medium);
+
   color: var(--color-neutral-900);
 }
 
 .select__control {
   position: relative;
+
   width: 100%;
 }
 
 .select__field {
   width: 100%;
+  min-height: 44px;
   box-sizing: border-box;
 
   appearance: none;
 
-  padding: var(--spacing-8) var(--spacing-32) var(--spacing-8)
-    var(--spacing-12);
+  padding:
+    var(--spacing-12)
+    var(--spacing-32)
+    var(--spacing-12)
+    var(--spacing-16);
 
   font-family: var(--font-family-primary);
-  font-size: 14px;
-  line-height: 20px;
+  font-size: var(--font-size-body-medium);
+  line-height: var(--line-height-body-medium);
+  font-weight: var(--font-weight-regular);
 
-  color: var(--color-neutral-700);
+  color: var(--color-neutral-900);
+
   background-color: #ffffff;
 
-  border: 1px solid var(--color-neutral-300);
+  border: 1px solid var(--color-neutral-200);
   border-radius: var(--radius-4);
 
+  outline: none;
   cursor: pointer;
+
+  transition: border-color 0.2s ease;
+}
+
+.select__field:focus {
+  border-color: var(--color-primary-500);
 }
 
 .select__arrow {
   position: absolute;
+
   top: 50%;
-  right: var(--spacing-12);
+  right: var(--spacing-16);
 
   width: 6px;
   height: 6px;
@@ -58,9 +75,4 @@
   transform: translateY(-70%) rotate(45deg);
 
   pointer-events: none;
-}
-
-.select__field:focus {
-  outline: none;
-  border-color: var(--color-primary-500);
 }
