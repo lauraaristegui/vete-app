@@ -1,9 +1,19 @@
 import { useState } from "react";
 
 import "./NewPatientForm.css";
+
 import Button from "../../../design-system/atoms/Button/Button";
 import Input from "../../../design-system/atoms/Input/Input";
 import { Select } from "../../../design-system/molecules/Select/Select";
+
+import {
+  formatDni,
+  isValidDni,
+  isValidEmail,
+  isValidName,
+  onlyLetters,
+  onlyNumbers,
+} from "../../utils/formValidation";
 
 export type PetSpecies = "dog" | "cat" | "rabbit";
 
@@ -34,29 +44,49 @@ export function NewPatientForm({
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
+
   const [petName, setPetName] = useState("");
   const [species, setSpecies] = useState<PetSpecies>("dog");
   const [breed, setBreed] = useState("");
   const [age, setAge] = useState("");
 
+  const [touched, setTouched] = useState({
+    ownerName: false,
+    dni: false,
+    email: false,
+    petName: false,
+  });
+
+  const markAsTouched = (field: keyof typeof touched) => {
+    setTouched((current) => ({
+      ...current,
+      [field]: true,
+    }));
+  };
+  const canContinue =
+    isValidName(ownerName) &&
+    isValidDni(dni) &&
+    isValidEmail(email) &&
+    isValidName(petName);
+
   const handleContinue = () => {
+    if (!canContinue) return;
+
     const patient: NewPatientData = {
-      ownerName,
+      ownerName: ownerName.trim(),
       dni,
       phone,
-      petName,
-      email,
-      address,
+      email: email.trim(),
+      address: address.trim(),
+
+      petName: petName.trim(),
       species,
-      breed,
+      breed: breed.trim(),
       age,
     };
 
     onContinue(patient);
   };
-
-  const canContinue =
-    ownerName.trim() !== "" && dni.trim() !== "" && petName.trim() !== "";
 
   return (
     <div className="new-patient-form">
@@ -66,6 +96,7 @@ export function NewPatientForm({
 
           <div>
             <h2>Datos del responsable</h2>
+
             <p>
               Completá la información de la persona responsable de la mascota.
             </p>
@@ -78,7 +109,13 @@ export function NewPatientForm({
           <Input
             id="owner-name"
             value={ownerName}
-            onChange={(event) => setOwnerName(event.target.value)}
+            onChange={(event) => setOwnerName(onlyLetters(event.target.value))}
+            onBlur={() => markAsTouched("ownerName")}
+            error={
+              touched.ownerName && !isValidName(ownerName)
+                ? "Ingresá un nombre de al menos 3 letras."
+                : undefined
+            }
             placeholder="Ej. María Laura Aristegui"
           />
         </div>
@@ -90,8 +127,14 @@ export function NewPatientForm({
             <Input
               id="owner-dni"
               value={dni}
-              onChange={(event) => setDni(event.target.value)}
-              placeholder="Ej. 31538765"
+              onChange={(event) => setDni(formatDni(event.target.value))}
+              onBlur={() => markAsTouched("dni")}
+              error={
+                touched.dni && !isValidDni(dni)
+                  ? "Ingresá un DNI válido."
+                  : undefined
+              }
+              placeholder="Ej. 31.538.765"
             />
           </div>
 
@@ -102,6 +145,12 @@ export function NewPatientForm({
               id="owner-email"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
+              onBlur={() => markAsTouched("email")}
+              error={
+                touched.email && !isValidEmail(email)
+                  ? "Ingresá un email válido."
+                  : undefined
+              }
               placeholder="Ej. laura@email.com"
             />
           </div>
@@ -123,8 +172,8 @@ export function NewPatientForm({
             <Input
               id="owner-phone"
               value={phone}
-              onChange={(event) => setPhone(event.target.value)}
-              placeholder="Ej. 11 1234 5678"
+              onChange={(event) => setPhone(onlyNumbers(event.target.value))}
+              placeholder="Ej. 1123456789"
             />
           </div>
         </div>
@@ -138,6 +187,7 @@ export function NewPatientForm({
 
           <div>
             <h2>Datos de la mascota</h2>
+
             <p>Completá la información de la mascota.</p>
           </div>
         </div>
@@ -148,7 +198,13 @@ export function NewPatientForm({
           <Input
             id="pet-name"
             value={petName}
-            onChange={(event) => setPetName(event.target.value)}
+            onChange={(event) => setPetName(onlyLetters(event.target.value))}
+            onBlur={() => markAsTouched("petName")}
+            error={
+              touched.petName && !isValidName(petName)
+                ? "Ingresá un nombre de al menos 3 letras."
+                : undefined
+            }
             placeholder="Ej. Luna"
           />
         </div>
@@ -170,19 +226,22 @@ export function NewPatientForm({
             <Input
               id="pet-breed"
               value={breed}
-              onChange={(event) => setBreed(event.target.value)}
+              onChange={(event) => setBreed(onlyLetters(event.target.value))}
               placeholder="Ej. Golden Retriever"
             />
           </div>
 
           <div className="new-patient-form__field">
             <label htmlFor="pet-age">Edad</label>
-
             <Input
               id="pet-age"
               value={age}
-              onChange={(event) => setAge(event.target.value)}
-              placeholder="Ej. 2 años"
+              onChange={(event) =>
+                setAge(onlyNumbers(event.target.value).slice(0, 2))
+              }
+              inputMode="numeric"
+              placeholder="Ej. 2"
+              suffix="años"
             />
           </div>
         </div>

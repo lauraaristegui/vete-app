@@ -1,11 +1,19 @@
 import { useState } from "react";
 import { UserRound } from "lucide-react";
 
-
-
 import "./OwnerForm.css";
+
 import Input from "../../../design-system/atoms/Input/Input";
 import Button from "../../../design-system/atoms/Button/Button";
+
+import {
+  formatDni,
+  isValidDni,
+  isValidEmail,
+  isValidName,
+  onlyLetters,
+  onlyNumbers,
+} from "../../utils/formValidation";
 
 export type OwnerFormData = {
   name: string;
@@ -26,23 +34,57 @@ export function OwnerForm({
   submitLabel = "Guardar cambios",
   onSubmit,
 }: OwnerFormProps) {
-  const [name, setName] = useState(initialData?.name ?? "");
-  const [dni, setDni] = useState(initialData?.dni ?? "");
-  const [phone, setPhone] = useState(initialData?.phone ?? "");
-  const [email, setEmail] = useState(initialData?.email ?? "");
-  const [address, setAddress] = useState(initialData?.address ?? "");
+  const [name, setName] = useState(
+    initialData?.name ?? "",
+  );
+
+  const [dni, setDni] = useState(
+    initialData?.dni
+      ? formatDni(initialData.dni)
+      : "",
+  );
+
+  const [phone, setPhone] = useState(
+    initialData?.phone ?? "",
+  );
+
+  const [email, setEmail] = useState(
+    initialData?.email ?? "",
+  );
+
+  const [address, setAddress] = useState(
+    initialData?.address ?? "",
+  );
+
+  const [touched, setTouched] = useState({
+    name: false,
+    dni: false,
+    email: false,
+  });
+
+  const markAsTouched = (
+    field: keyof typeof touched,
+  ) => {
+    setTouched((current) => ({
+      ...current,
+      [field]: true,
+    }));
+  };
 
   const canSubmit =
-    name.trim() !== "" &&
-    dni.trim() !== "";
+    isValidName(name) &&
+    isValidDni(dni) &&
+    isValidEmail(email);
 
   const handleSubmit = () => {
+    if (!canSubmit) return;
+
     onSubmit({
-      name,
+      name: name.trim(),
       dni,
       phone,
-      email,
-      address,
+      email: email.trim(),
+      address: address.trim(),
     });
   };
 
@@ -50,7 +92,10 @@ export function OwnerForm({
     <div className="owner-form">
       <div className="owner-form__header">
         <div className="owner-form__icon">
-          <UserRound size={18} strokeWidth={1.8} />
+          <UserRound
+            size={18}
+            strokeWidth={1.8}
+          />
         </div>
 
         <div>
@@ -71,7 +116,17 @@ export function OwnerForm({
           id="owner-name"
           value={name}
           onChange={(event) =>
-            setName(event.target.value)
+            setName(
+              onlyLetters(event.target.value),
+            )
+          }
+          onBlur={() =>
+            markAsTouched("name")
+          }
+          error={
+            touched.name && !isValidName(name)
+              ? "Ingresá un nombre de al menos 3 letras."
+              : undefined
           }
           placeholder="Ej. María Laura Aristegui"
         />
@@ -87,9 +142,19 @@ export function OwnerForm({
             id="owner-dni"
             value={dni}
             onChange={(event) =>
-              setDni(event.target.value)
+              setDni(
+                formatDni(event.target.value),
+              )
             }
-            placeholder="Ej. 31538765"
+            onBlur={() =>
+              markAsTouched("dni")
+            }
+            error={
+              touched.dni && !isValidDni(dni)
+                ? "Ingresá un DNI válido."
+                : undefined
+            }
+            placeholder="Ej. 31.538.765"
           />
         </div>
 
@@ -102,9 +167,12 @@ export function OwnerForm({
             id="owner-phone"
             value={phone}
             onChange={(event) =>
-              setPhone(event.target.value)
+              setPhone(
+                onlyNumbers(event.target.value),
+              )
             }
-            placeholder="Ej. 11 1234 5678"
+            inputMode="numeric"
+            placeholder="Ej. 1123456789"
           />
         </div>
 
@@ -118,6 +186,15 @@ export function OwnerForm({
             value={email}
             onChange={(event) =>
               setEmail(event.target.value)
+            }
+            onBlur={() =>
+              markAsTouched("email")
+            }
+            error={
+              touched.email &&
+              !isValidEmail(email)
+                ? "Ingresá un email válido."
+                : undefined
             }
             placeholder="Ej. laura@email.com"
           />
