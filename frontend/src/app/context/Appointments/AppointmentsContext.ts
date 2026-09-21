@@ -1,16 +1,14 @@
 import { createContext } from "react";
-import type { Appointment, AppointmentStatus } from "../../../shared/types/appointment";
-
-
+import type {
+  Appointment,
+  AppointmentStatus,
+} from "../../../shared/types/appointment";
 
 export type AppointmentsContextType = {
   appointments: Appointment[];
-  changeStatus: (
-    id: string,
-    newStatus: AppointmentStatus
-  ) => void;
+  changeStatus: (id: string, newStatus: AppointmentStatus) => Promise<void>;
   addAppointment: (appointment: Appointment) => void;
 };
 
-export const AppointmentsContext =
-  createContext<AppointmentsContextType | undefined>(undefined);
+export const AppointmentsContext = createContext<
+  AppointmentsContextType | undefined>(undefined);

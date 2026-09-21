@@ -27,6 +27,31 @@ database.exec(`
   )
 `);
 
+database.exec(`
+  CREATE TABLE IF NOT EXISTS appointments (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    pet_id INTEGER NOT NULL,
+    date TEXT NOT NULL,
+    time TEXT NOT NULL,
+    veterinarian TEXT NOT NULL,
+    status TEXT NOT NULL DEFAULT 'pending',
+    FOREIGN KEY (pet_id) REFERENCES pets(id)
+  )
+`);
+
+database.exec(`
+  CREATE TABLE IF NOT EXISTS consultations (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    pet_id INTEGER NOT NULL,
+    date TEXT NOT NULL,
+    reason TEXT NOT NULL,
+    diagnosis TEXT NOT NULL,
+    treatment TEXT,
+    observations TEXT,
+    FOREIGN KEY (pet_id) REFERENCES pets(id)
+  )
+`);
+
 module.exports = {
   database,
 };

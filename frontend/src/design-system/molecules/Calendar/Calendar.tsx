@@ -10,21 +10,20 @@ export function Calendar({
   selectedDate,
   onDateChange,
 }: CalendarProps) {
+  // Fecha temporal seleccionada dentro del calendario.
   const [draftDate, setDraftDate] = useState(selectedDate);
 
-  // Fecha seleccionada temporalmente dentro del calendario.
-  // Si todavía no hay selección, es null.
-  const selected = draftDate
-    ? new Date(`${draftDate}T00:00:00`)
-    : null;
-
-  // El calendario necesita siempre un mes para mostrar.
-  // Si no hay fecha seleccionada, abre en el mes actual.
+  // Mes que está mostrando el calendario.
   const [visibleDate, setVisibleDate] = useState(() =>
     selectedDate
       ? new Date(`${selectedDate}T00:00:00`)
       : new Date(),
   );
+
+  // Fecha seleccionada temporalmente.
+  const selected = draftDate
+    ? new Date(`${draftDate}T00:00:00`)
+    : null;
 
   const year = visibleDate.getFullYear();
   const month = visibleDate.getMonth();
@@ -112,10 +111,11 @@ export function Calendar({
       setVisibleDate(
         new Date(`${selectedDate}T00:00:00`),
       );
+
       return;
     }
 
-    // Si todavía no había ninguna fecha,
+    // Si todavía no había una fecha,
     // volvemos al mes actual.
     setVisibleDate(new Date());
   };
@@ -186,9 +186,7 @@ export function Calendar({
                   ? "calendar__day--selected"
                   : ""
               }`}
-              onClick={() =>
-                handleDateSelect(day)
-              }
+              onClick={() => handleDateSelect(day)}
             >
               {day}
             </button>

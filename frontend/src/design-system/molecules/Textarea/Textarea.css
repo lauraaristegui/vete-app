@@ -40,3 +40,19 @@
   outline: none;
   border-color: var(--color-primary-500);
 }
+
+.textarea__field--error {
+  border-color: var(--color-red-500);
+}
+
+.textarea__field--error:focus {
+  border-color: var(--color-red-500);
+}
+
+.textarea__error {
+  display: block;
+  margin-top: 4px;
+  color: var(--color-red-600);
+  font-size: 12px;
+  line-height: 16px;
+}

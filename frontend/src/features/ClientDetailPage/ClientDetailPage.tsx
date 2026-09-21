@@ -108,6 +108,7 @@ export function ClientDetailPage() {
                 navigate("/agenda/nuevo-turno", {
                   state: {
                     patient: {
+                      petId: pet.id,
                       petName: pet.name,
                       ownerName: client.name,
                       dni: client.dni,

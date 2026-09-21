@@ -13,6 +13,7 @@ type Pet = {
 };
 
 export type SelectedPatient = {
+  petId: string;
   petName: string;
   ownerName: string;
   dni: string;
@@ -122,7 +123,7 @@ export function SearchResultOwner({
                 ownerName={name}
                 species={pet.species}
                 variant="compact"
-                  onEdit={() => {
+                onEdit={() => {
                   onEditPet?.(pet.id);
                 }}
                 onViewHistory={() => {
@@ -130,6 +131,7 @@ export function SearchResultOwner({
                 }}
                 onNewAppointment={() =>
                   onNewAppointment?.({
+                    petId: pet.id,
                     petName: pet.name,
                     ownerName: name,
                     dni,
