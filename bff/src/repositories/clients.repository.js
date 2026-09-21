@@ -1,55 +1,152 @@
-const { clients } = require("../data/clients.data");
+const { database } = require("../database/database");
 
 function getClients() {
-  return clients;
+  const clients = database
+    .prepare(`
+      SELECT * FROM clients
+    `)
+    .all();
+
+  return clients.map((client) => {
+    const pets = database
+      .prepare(`
+        SELECT
+          id,
+          name,
+          species,
+          breed,
+          age
+        FROM pets
+        WHERE client_id = ?
+      `)
+      .all(client.id);
+
+    return {
+      ...client,
+      id: String(client.id),
+      pets: pets.map((pet) => ({
+        ...pet,
+        id: String(pet.id),
+      })),
+    };
+  });
 }
 
 function getClientById(id) {
-  return clients.find((client) => client.id === id);
+  const client = database
+    .prepare(`
+      SELECT * FROM clients
+      WHERE id = ?
+    `)
+    .get(id);
+
+  if (!client) {
+    return undefined;
+  }
+
+  const pets = database
+    .prepare(`
+      SELECT
+        id,
+        name,
+        species,
+        breed,
+        age
+      FROM pets
+      WHERE client_id = ?
+    `)
+    .all(id);
+
+  return {
+    ...client,
+    id: String(client.id),
+    pets: pets.map((pet) => ({
+      ...pet,
+      id: String(pet.id),
+    })),
+  };
 }
 
 function createClient(clientData) {
-  const newClient = {
-    id: String(clients.length + 1),
+  const statement = database.prepare(`
+    INSERT INTO clients (name, dni, phone, email, address)
+    VALUES (?, ?, ?, ?, ?)
+  `);
+
+  const result = statement.run(
+    clientData.name,
+    clientData.dni,
+    clientData.phone,
+    clientData.email,
+    clientData.address,
+  );
+
+  return {
+    id: String(result.lastInsertRowid),
     ...clientData,
     pets: [],
   };
-
-  clients.push(newClient);
-
-  return newClient;
 }
 
 function updateClient(id, clientData) {
-  const clientIndex = clients.findIndex((client) => client.id === id);
+  const currentClient = database
+    .prepare(`
+      SELECT * FROM clients
+      WHERE id = ?
+    `)
+    .get(id);
 
-  if (clientIndex === -1) {
+  if (!currentClient) {
     return undefined;
   }
 
   const updatedClient = {
-    ...clients[clientIndex],
+    ...currentClient,
     ...clientData,
   };
 
-  clients[clientIndex] = updatedClient;
+  database
+    .prepare(`
+      UPDATE clients
+      SET
+        name = ?,
+        dni = ?,
+        phone = ?,
+        email = ?,
+        address = ?
+      WHERE id = ?
+    `)
+    .run(
+      updatedClient.name,
+      updatedClient.dni,
+      updatedClient.phone,
+      updatedClient.email,
+      updatedClient.address,
+      id,
+    );
 
-  return updatedClient;
+  return getClientById(id);
 }
 
 function addPet(clientId, petData) {
-  const client = clients.find((client) => client.id === clientId);
+  const statement = database.prepare(`
+    INSERT INTO pets (client_id, name, species, breed, age)
+    VALUES (?, ?, ?, ?, ?)
+  `);
 
-  const allPets = clients.flatMap((client) => client.pets);
+  const result = statement.run(
+    clientId,
+    petData.name,
+    petData.species,
+    petData.breed,
+    petData.age,
+  );
 
-  const newPet = {
-    id: String(allPets.length + 1),
+  return {
+    id: String(result.lastInsertRowid),
+    clientId,
     ...petData,
   };
-
-  client.pets.push(newPet);
-
-  return newPet;
 }
 
 module.exports = {

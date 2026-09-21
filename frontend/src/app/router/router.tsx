@@ -11,6 +11,7 @@ import { AddPetPage } from "../../features/AddPetPage/AddPetPage";
 import { ClinicalHistoryPage } from "../../features/ClinicalHistoryPage/ClinicalHistoryPage";
 import { ClinicalHistoryDetailPage } from "../../features/ClinicalHistoryDetailPage/ClinicalHistoryDetailPage";
 import { NewConsultationPage } from "../../features/NewConsultationPage/NewConsultationPage";
+import { EditPetPage } from "../../features/EditPetPage/EditPetPage";
 
 export const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ export const router = createBrowserRouter([
       {
         path: "/clientes/:clientId/mascotas/nueva",
         element: <AddPetPage />,
+      },
+      {
+        path: "/clientes/:clientId/mascotas/:petId/editar",
+        element: <EditPetPage />,
       },
       {
         path: "/historia-clinica",

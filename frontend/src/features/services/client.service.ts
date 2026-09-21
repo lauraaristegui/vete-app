@@ -34,19 +34,35 @@ export async function createPet(
   clientId: string,
   petData: Omit<Pet, "id">,
 ): Promise<Pet> {
-  const response = await fetch(
-    `${API_URL}/clients/${clientId}/pets`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(petData),
+  const response = await fetch(`${API_URL}/clients/${clientId}/pets`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
     },
-  );
+    body: JSON.stringify(petData),
+  });
 
   if (!response.ok) {
     throw new Error("Error al crear la mascota");
+  }
+
+  return response.json();
+}
+
+export async function updateClient(
+  clientId: string,
+  clientData: Partial<Omit<Client, "id" | "pets">>,
+): Promise<Client> {
+  const response = await fetch(`${API_URL}/clients/${clientId}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(clientData),
+  });
+
+  if (!response.ok) {
+    throw new Error("Error al actualizar el cliente");
   }
 
   return response.json();

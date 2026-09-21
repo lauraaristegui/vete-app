@@ -15,6 +15,12 @@ export type ClientsContextType = {
     clientId: string,
     pet: Pet,
   ) => void;
+
+  updatePet: (
+  clientId: string,
+  petId: string,
+  petData: Partial<Pet>,
+) => void;
 };
 export const ClientsContext =
   createContext<ClientsContextType | undefined>(undefined);

@@ -22,7 +22,6 @@ export function ClientsProvider({ children }: ClientsProviderProps) {
       });
   }, []);
 
-
   const addClient = (client: Client) => {
     setClients((currentClients) => [...currentClients, client]);
   };
@@ -48,10 +47,30 @@ export function ClientsProvider({ children }: ClientsProviderProps) {
     );
   };
 
+  const updatePet = (
+    clientId: string,
+    petId: string,
+    petData: Partial<Pet>,
+  ) => {
+    setClients((currentClients) =>
+      currentClients.map((client) =>
+        client.id === clientId
+          ? {
+              ...client,
+              pets: client.pets.map((pet) =>
+                pet.id === petId ? { ...pet, ...petData } : pet,
+              ),
+            }
+          : client,
+      ),
+    );
+  };
+
   const value: ClientsContextType = {
     clients,
     addClient,
     updateClient,
+    updatePet,
     addPet,
   };
 

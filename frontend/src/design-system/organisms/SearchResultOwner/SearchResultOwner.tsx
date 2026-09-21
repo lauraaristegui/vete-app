@@ -27,6 +27,7 @@ type SearchResultOwnerProps = {
   email: string;
   pets: Pet[];
   onEdit?: (clientId: string) => void;
+  onEditPet?: (petId: string) => void;
   onAddPet?: (clientId: string) => void;
   onViewHistory?: (petId: string) => void;
   onNewAppointment?: (patient: SelectedPatient) => void;
@@ -40,6 +41,7 @@ export function SearchResultOwner({
   email,
   pets,
   onEdit,
+  onEditPet,
   onAddPet,
   onViewHistory,
   onNewAppointment,
@@ -120,6 +122,9 @@ export function SearchResultOwner({
                 ownerName={name}
                 species={pet.species}
                 variant="compact"
+                  onEdit={() => {
+                  onEditPet?.(pet.id);
+                }}
                 onViewHistory={() => {
                   onViewHistory?.(pet.id);
                 }}

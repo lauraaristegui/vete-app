@@ -1,24 +1,68 @@
-const { clients } = require("../data/clients.data");
 
+const { database } = require("../database/database");
 function getPetById(petId) {
-  const pets = clients.flatMap((client) => client.pets);
-
-  return pets.find((pet) => pet.id === petId);
-}
-
-
-function updatePet(petId, petData) {
-  const pet = getPetById(petId);
+  const pet = database
+    .prepare(`
+      SELECT
+        id,
+        client_id,
+        name,
+        species,
+        breed,
+        age
+      FROM pets
+      WHERE id = ?
+    `)
+    .get(petId);
 
   if (!pet) {
     return undefined;
   }
 
-  Object.assign(pet, petData);
-
-  return pet;
+  return {
+    ...pet,
+    id: String(pet.id),
+    clientId: String(pet.client_id),
+  };
 }
 
+function updatePet(petId, petData) {
+  const currentPet = database
+    .prepare(`
+      SELECT * FROM pets
+      WHERE id = ?
+    `)
+    .get(petId);
+
+  if (!currentPet) {
+    return undefined;
+  }
+
+  const updatedPet = {
+    ...currentPet,
+    ...petData,
+  };
+
+  database
+    .prepare(`
+      UPDATE pets
+      SET
+        name = ?,
+        species = ?,
+        breed = ?,
+        age = ?
+      WHERE id = ?
+    `)
+    .run(
+      updatedPet.name,
+      updatedPet.species,
+      updatedPet.breed,
+      updatedPet.age,
+      petId,
+    );
+
+  return getPetById(petId);
+}
 module.exports = {
   getPetById,
   updatePet,

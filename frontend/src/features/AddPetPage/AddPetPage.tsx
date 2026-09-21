@@ -7,9 +7,8 @@ import {
   type PetFormData,
 } from "../../shared/components/PetForm/PetForm";
 
-import type { Pet } from "../../shared/types/client";
-
 import "./AddPetPage.css";
+import { createPet } from "../services/client.service";
 
 export function AddPetPage() {
   const { clientId } = useParams();
@@ -17,9 +16,7 @@ export function AddPetPage() {
 
   const { clients, addPet } = useClients();
 
-  const client = clients.find(
-    (client) => client.id === clientId,
-  );
+  const client = clients.find((client) => client.id === clientId);
 
   if (!client) {
     return (
@@ -32,18 +29,16 @@ export function AddPetPage() {
     );
   }
 
-  const handleAddPet = (data: PetFormData) => {
-    const newPet: Pet = {
-      id: crypto.randomUUID(),
-      name: data.name,
-      species: data.species,
-      breed: data.breed,
-      age: data.age,
-    };
+  const handleAddPet = async (data: PetFormData) => {
+    try {
+      const newPet = await createPet(client.id, data);
 
-    addPet(client.id, newPet);
+      addPet(client.id, newPet);
 
-    navigate(`/clientes/${client.id}`);
+      navigate(`/clientes/${client.id}`);
+    } catch (error) {
+      console.error("Error creando mascota:", error);
+    }
   };
 
   return (
@@ -53,10 +48,7 @@ export function AddPetPage() {
         description={`Nueva mascota para ${client.name}`}
       />
 
-      <PetForm
-        submitLabel="Agregar mascota"
-        onSubmit={handleAddPet}
-      />
+      <PetForm submitLabel="Agregar mascota" onSubmit={handleAddPet} />
     </div>
   );
 }

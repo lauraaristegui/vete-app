@@ -98,6 +98,9 @@ export function ClientDetailPage() {
               petInfo={[pet.breed, pet.age].filter(Boolean).join(" • ")}
               ownerName={client.name}
               species={pet.species}
+              onEdit={() =>
+                navigate(`/clientes/${client.id}/mascotas/${pet.id}/editar`)
+              }
               onViewHistory={() => {
                 navigate(`/historia-clinica/${pet.id}`);
               }}
