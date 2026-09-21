@@ -1,0 +1,140 @@
+/* =========================
+   CLIENT CARD
+========================= */
+
+.client-card {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-24);
+
+  width: 100%;
+  padding: var(--spacing-16);
+  box-sizing: border-box;
+
+  background-color: var(--color-surface-soft);
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius-12);
+}
+
+
+/* =========================
+   CONTENT
+========================= */
+
+.client-card__content {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-12);
+
+  min-width: 0;
+}
+
+
+/* =========================
+   AVATAR
+========================= */
+
+.client-card__avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+
+  background-color: var(--color-primary-50);
+  border-radius: 50%;
+
+  font-size: 18px;
+}
+
+
+/* =========================
+   CLIENT INFO
+========================= */
+
+.client-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  min-width: 0;
+}
+
+.client-card__info h3 {
+  margin: 0;
+
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+
+  color: var(--color-neutral-900);
+}
+
+.client-card__dni {
+  font-family: var(--font-family-primary);
+  font-size: 13px;
+  line-height: 20px;
+
+  color: var(--color-neutral-600);
+}
+
+
+/* =========================
+   PETS
+========================= */
+
+.client-card__pets {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+
+  margin-top: var(--spacing-12);
+}
+
+.client-card__pets-label {
+  font-family: var(--font-family-primary);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+
+  color: var(--color-neutral-500);
+}
+
+.client-card__pet-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-8);
+}
+
+.client-card__pet {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 6px 10px;
+
+  font-family: var(--font-family-primary);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+
+  color: var(--color-primary-700);
+  background-color: var(--color-primary-50);
+
+  border-radius: var(--radius-8);
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 700px) {
+  .client-card {
+    flex-direction: column;
+    gap: var(--spacing-16);
+  }
+}

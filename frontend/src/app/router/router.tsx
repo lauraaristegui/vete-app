@@ -2,7 +2,15 @@ import { createBrowserRouter } from "react-router";
 import { AppLayout } from "../layout/AppLayout";
 import { ReceptionPage } from "../../features/ReceptionPage/ReceptionPage";
 import { AgendaPage } from "../../features/AgendaPage/AgendaPage";
-
+import { NewAppointmentPage } from "../../features/NewAppointmentPage/NewAppointmentPage";
+import { NewClientPage } from "../../features/NewClientPage/NewClientPage";
+import { ClientDetailPage } from "../../features/ClientDetailPage/ClientDetailPage";
+import { ClientsPage } from "../../features/ClientsPage/ClientsPage";
+import { EditClientPage } from "../../features/EditClientPage/EditClientPage";
+import { AddPetPage } from "../../features/AddPetPage/AddPetPage";
+import { ClinicalHistoryPage } from "../../features/ClinicalHistoryPage/ClinicalHistoryPage";
+import { ClinicalHistoryDetailPage } from "../../features/ClinicalHistoryDetailPage/ClinicalHistoryDetailPage";
+import { NewConsultationPage } from "../../features/NewConsultationPage/NewConsultationPage";
 
 export const router = createBrowserRouter([
   {
@@ -18,12 +26,40 @@ export const router = createBrowserRouter([
         element: <AgendaPage />,
       },
       {
-        path: "clientes",
-        element: <h1>Clientes</h1>,
+        path: "agenda/nuevo-turno",
+        element: <NewAppointmentPage />,
       },
       {
-        path: "historia-clinica",
-        element: <h1>Historia clínica</h1>,
+        path: "clientes",
+        element: <ClientsPage />,
+      },
+      {
+        path: "clientes/:clientId",
+        element: <ClientDetailPage />,
+      },
+      {
+        path: "/clientes/:clientId/editar",
+        element: <EditClientPage />,
+      },
+      {
+        path: "clientes/nuevo",
+        element: <NewClientPage />,
+      },
+      {
+        path: "/clientes/:clientId/mascotas/nueva",
+        element: <AddPetPage />,
+      },
+      {
+        path: "/historia-clinica",
+        element: <ClinicalHistoryPage />,
+      },
+      {
+        path: "/historia-clinica/:petId",
+        element: <ClinicalHistoryDetailPage />,
+      },
+      {
+        path: "/historia-clinica/:petId/nueva-consulta",
+        element: <NewConsultationPage />,
       },
     ],
   },

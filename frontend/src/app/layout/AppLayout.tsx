@@ -1,6 +1,8 @@
-import { Outlet } from 'react-router'
-import { Sidebar } from '../sidebar/sidebar'
-import './AppLayout.css'
+import { Outlet } from "react-router";
+
+import { Sidebar } from "../sidebar/sidebar";
+
+import "./AppLayout.css";
 
 export function AppLayout() {
   return (
@@ -10,8 +12,10 @@ export function AppLayout() {
       </aside>
 
       <main className="app-layout__content">
-        <Outlet />
+        <div className="app-layout__content-container">
+          <Outlet />
+        </div>
       </main>
     </div>
-  )
+  );
 }

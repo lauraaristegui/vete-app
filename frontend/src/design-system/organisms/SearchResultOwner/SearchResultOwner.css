@@ -1,59 +1,200 @@
 .search-result-owner {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-16);
+
+  gap: var(--spacing-12);
 
   width: 100%;
 }
 
-.search-result-owner__header,
-.search-result-owner__pets-header {
-  display: flex;
+/* =========================
+   TITLE
+========================= */
+
+.search-result-owner__detail {
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 5px;
 }
 
-.search-result-owner__header h3,
-.search-result-owner__pets-header h3 {
+.search-result-owner__detail svg {
+  flex-shrink: 0;
+  color: var(--color-neutral-500);
+}
+
+.search-result-owner__title {
   margin: 0;
 
-  font-size: 20px;
-  line-height: 28px;
-  font-weight: var(--font-weight-semibold);
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+
   color: var(--color-neutral-900);
 }
+
+/* =========================
+   CARD
+========================= */
+
+.search-result-owner__card {
+  display: flex;
+  flex-direction: column;
+
+  gap: var(--spacing-20);
+
+  width: 100%;
+
+  padding: var(--spacing-16);
+
+  box-sizing: border-box;
+
+  background-color: var(--color-surface);
+
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius-12);
+
+  box-shadow: 0 1px 2px rgb(15 23 42 / 0.03);
+}
+
+/* =========================
+   OWNER HEADER
+========================= */
+
+.search-result-owner__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: var(--spacing-16);
+}
+
+.search-result-owner__owner {
+  display: flex;
+  align-items: center;
+
+  gap: var(--spacing-12);
+
+  min-width: 0;
+}
+
+.search-result-owner__avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+
+  flex-shrink: 0;
+
+  background-color: var(--color-primary-50);
+  color: var(--color-primary-600);
+
+  border-radius: 50%;
+}
+
+/* =========================
+   OWNER DATA
+========================= */
 
 .search-result-owner__data {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-8);
+
+  gap: 4px;
+
+  min-width: 0;
 }
 
 .search-result-owner__data > strong {
+  font-family: var(--font-family-primary);
   font-size: 14px;
   line-height: 20px;
-  font-weight: var(--font-weight-regular);
+  font-weight: 600;
+
   color: var(--color-neutral-900);
 }
 
 .search-result-owner__details {
   display: flex;
-  gap: var(--spacing-24);
-}
+  align-items: center;
+  flex-wrap: wrap;
 
-.search-result-owner__details > div {
-  display: flex;
-  flex-direction: column;
+  gap: var(--spacing-16);
 }
 
 .search-result-owner__details span {
+  font-family: var(--font-family-primary);
   font-size: 12px;
   line-height: 16px;
-  color: var(--color-neutral-700);
+
+  color: var(--color-neutral-600);
+}
+
+/* =========================
+   PETS
+========================= */
+
+.search-result-owner__pets-section {
+  display: flex;
+  flex-direction: column;
+
+  gap: var(--spacing-12);
+}
+
+.search-result-owner__pets-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: var(--spacing-16);
+}
+
+.search-result-owner__pets-header h3 {
+  margin: 0;
+
+  font-family: var(--font-family-primary);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+
+  color: var(--color-neutral-900);
 }
 
 .search-result-owner__pets {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
   gap: var(--spacing-16);
+
+  width: 100%;
+}
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1000px) {
+  .search-result-owner__pets {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .search-result-owner__header,
+  .search-result-owner__pets-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .search-result-owner__details {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .search-result-owner__pets {
+    grid-template-columns: 1fr;
+  }
 }

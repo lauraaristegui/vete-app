@@ -1,0 +1,61 @@
+.appointment-list {
+  width: 100%;
+  overflow: visible;
+
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius-12);
+}
+.appointment-list__header {
+  display: grid;
+  align-items: center;
+
+  min-height: 38px;
+  padding: 0 var(--spacing-16);
+
+  box-sizing: border-box;
+
+  background-color: var(--color-primary-50);
+
+  border-bottom: 1px solid var(--color-primary-100);
+}
+
+/* RECEPCIÓN */
+
+.appointment-list__header--without-actions {
+  grid-template-columns:
+    70px
+    minmax(110px, 0.8fr)
+    minmax(160px, 1.2fr)
+    minmax(120px, 0.9fr)
+    130px;
+
+  column-gap: var(--spacing-16);
+}
+
+/* AGENDA */
+
+.appointment-list__header--with-actions {
+  grid-template-columns:
+    70px
+    minmax(110px, 0.8fr)
+    minmax(160px, 1.2fr)
+    minmax(120px, 0.9fr)
+    130px
+    150px;
+
+  column-gap: var(--spacing-16);
+}
+
+.appointment-list__header span {
+  font-family: var(--font-family-primary);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
+
+  color: var(--color-neutral-600);
+}
+
+.appointment-list__body {
+  width: 100%;
+}

@@ -1,56 +1,86 @@
 .agenda-page {
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-24);
+  width: 100%;
 }
 
 .agenda-page__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: var(--spacing-32);
-
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-16);
+  width: 100%;
 }
 
-
-.agenda-page__appointment-header {
-    display: grid;
-    grid-template-columns: 80px 140px 200px 140px 156px 140px;
-    column-gap: var(--spacing-24);
-    justify-content: space-between;
-    align-items: center;
-    gap: var(--spacing-16);
-
-    width: 100%;
-    min-height: 46px;
-    padding: 0 var(--spacing-24);
-    box-sizing: border-box;
-
-    background-color: #ffffff;
-    border-radius: var(--radius-8);
-
-    font-size: 12px;
-    line-height: 16px;
-    font-weight: var(--font-weight-regular);
-    color: var(--color-neutral-600)
-}
-
-.agenda-page__appointment-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-8);
+.agenda-page__appointments {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-24);
+  width: 100%;
 }
 
 .agenda-page__search {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-8);
-
-  margin-bottom: var(--spacing-24);
+  width: 100%;
 }
 
 .agenda-page__search label {
-  font-size: 12px;
-  line-height: 16px;
+  font-family: var(--font-family-primary);
+  font-size: 14px;
+  line-height: 20px;
   font-weight: var(--font-weight-medium);
-
   color: var(--color-neutral-700);
+}
+
+.agenda-page__date-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-16);
+  width: 100%;
+  margin-bottom: calc(var(--spacing-24) * -1 + var(--spacing-12));
+}
+
+.agenda-page__date-header h2 {
+  margin: 0;
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  color: var(--color-neutral-900);
+}
+
+.agenda-page__date-navigation {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+}
+
+.agenda-page__selected-date {
+  min-width: 190px;
+  text-align: center;
+
+  font-family: var(--font-family-primary);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--color-neutral-700);
+}
+
+.agenda-page__pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--spacing-12);
+  width: 100%;
+}
+
+.agenda-page__pagination span {
+  font-family: var(--font-family-primary);
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--color-neutral-600);
 }

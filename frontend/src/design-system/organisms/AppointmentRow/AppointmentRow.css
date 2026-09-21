@@ -1,32 +1,117 @@
 .appointment-row {
   display: grid;
-  grid-template-columns: 80px 140px 200px 140px 156px 140px;
-column-gap: var(--spacing-24);
-justify-content: space-between;
   align-items: center;
-  gap: var(--spacing-16);
 
   width: 100%;
-  min-height: 98px;
-  padding: 0 var(--spacing-24);
+  min-height: 52px;
+
+  padding: 0 var(--spacing-16);
+
   box-sizing: border-box;
 
-  background-color: #ffffff;
-  border: 1px solid var(--color-neutral-300);
-  border-radius: var(--radius-8);
+  background-color: var(--color-surface);
+
+  border: 0;
+  border-bottom: 1px solid var(--color-neutral-100);
+
+  border-radius: 0;
 
   font-family: var(--font-family-primary);
-  color: var(--color-neutral-900);
+  color: var(--color-neutral-800);
 }
 
-.appointment-row>span {
+.appointment-row:last-child {
+  border-bottom: 0;
+}
+
+/* RECEPCIÓN */
+
+.appointment-row--without-actions {
+  grid-template-columns:
+    70px
+    minmax(110px, 0.8fr)
+    minmax(160px, 1.2fr)
+    minmax(120px, 0.9fr)
+    130px;
+
+  column-gap: var(--spacing-16);
+}
+
+/* AGENDA */
+
+.appointment-row--with-actions {
+  grid-template-columns:
+    70px
+    minmax(110px, 0.8fr)
+    minmax(160px, 1.2fr)
+    minmax(120px, 0.9fr)
+    130px
+    150px;
+
+  column-gap: var(--spacing-16);
+}
+
+.appointment-row > span {
+  min-width: 0;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
   font-size: 12px;
   line-height: 16px;
   font-weight: var(--font-weight-regular);
+
+  color: var(--color-neutral-700);
+}
+
+.appointment-row__time {
+  font-weight: 600 !important;
+  color: var(--color-neutral-900) !important;
+}
+
+.appointment-row__patient {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+
+  min-width: 0;
+
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+
+  color: var(--color-neutral-900);
+}
+
+.appointment-row__patient-avatar {
+  width: 28px;
+  height: 28px;
+
+  flex-shrink: 0;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+}
+
+.appointment-row__patient span {
+  min-width: 0;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+.appointment-row__status {
+  display: flex;
+  align-items: center;
 }
 
 .appointment-row__action {
   display: flex;
-  justify-content: flex-start;
   align-items: center;
+
+  min-width: 0;
 }

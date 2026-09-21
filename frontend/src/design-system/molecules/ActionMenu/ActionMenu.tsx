@@ -11,12 +11,14 @@ type ActionMenuProps = {
   label: string;
   options: ActionMenuOption[];
   onSelect: (value: string) => void;
+  iconOnly?: boolean;
 };
 
 export function ActionMenu({
   label,
   options,
   onSelect,
+  iconOnly = false,
 }: ActionMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -27,12 +29,23 @@ export function ActionMenu({
 
   return (
     <div className="action-menu">
-      <Button
-        variant="secondary"
-        onClick={() => setIsOpen((current) => !current)}
-      >
-        {label} ▾
-      </Button>
+      {iconOnly ? (
+        <button
+          type="button"
+          className="action-menu__trigger"
+          aria-label={label}
+          onClick={() => setIsOpen((current) => !current)}
+        >
+          ⋮
+        </button>
+      ) : (
+        <Button
+          variant="secondary"
+          onClick={() => setIsOpen((current) => !current)}
+        >
+          {label} ▾
+        </Button>
+      )}
 
       {isOpen && (
         <div className="action-menu__options">

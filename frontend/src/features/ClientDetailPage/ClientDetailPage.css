@@ -1,0 +1,152 @@
+.client-detail-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-24);
+}
+
+/* =========================
+   RESPONSABLE
+========================= */
+
+.client-detail-page__owner {
+  width: 100%;
+  max-width: 1130px;
+  padding: var(--spacing-24);
+  box-sizing: border-box;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius-12);
+}
+
+.client-detail-page__owner-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-16);
+  margin-bottom: var(--spacing-24);
+}
+
+.client-detail-page__owner-title {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-12);
+}
+
+.client-detail-page__owner-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  background-color: var(--color-primary-50);
+  border-radius: 50%;
+}
+
+.client-detail-page__owner-title h2 {
+  margin: 0;
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  color: var(--color-neutral-900);
+}
+
+.client-detail-page__owner-title p {
+  margin: 2px 0 0;
+  font-family: var(--font-family-primary);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  color: var(--color-neutral-500);
+}
+
+.client-detail-page__owner-data {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-24) var(--spacing-16);
+}
+
+.client-detail-page__data-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.client-detail-page__data-item span {
+  font-family: var(--font-family-primary);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  color: var(--color-neutral-500);
+}
+
+.client-detail-page__data-item strong {
+  font-family: var(--font-family-primary);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--color-neutral-900);
+}
+
+/* =========================
+   MASCOTAS
+========================= */
+
+.client-detail-page__pets {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-16);
+  width: 100%;
+  max-width: 1130px;
+}
+
+.client-detail-page__pets-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--spacing-16);
+}
+
+.client-detail-page__pets-header h2 {
+  margin: 0;
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  color: var(--color-neutral-900);
+}
+
+.client-detail-page__pets-header p {
+  margin: 2px 0 0;
+  font-family: var(--font-family-primary);
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--color-neutral-500);
+}
+
+.client-detail-page__pets-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--spacing-16);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+  .client-detail-page__pets-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .client-detail-page__owner-data {
+    grid-template-columns: 1fr;
+  }
+
+  .client-detail-page__pets-grid {
+    grid-template-columns: 1fr;
+  }
+}

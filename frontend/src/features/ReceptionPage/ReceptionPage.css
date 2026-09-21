@@ -1,123 +1,212 @@
 .reception-page {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-24);
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+
+  gap: 36px;
 }
+/* =========================
+   HEADER
+========================= */
+
+.reception-page__header {
+  width: 100%;
+}
+
+/* =========================
+   TURNOS
+========================= */
 
 .reception-page__appointments {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-8);
+  width: 100%;
 }
 
-.reception-page__appointment-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-8);
+.reception-page__section-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: var(--spacing-16);
+
+  margin-bottom: 12px;
 }
 
+.reception-page__section-header h2 {
+  margin: 0;
+
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+
+  color: var(--color-neutral-900);
+}
+
+.reception-page__section-header p {
+  margin: 2px 0 0;
+
+  font-size: 12px;
+  line-height: 16px;
+
+  color: var(--color-neutral-500);
+}
+
+.reception-page__section-header a {
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 500;
+
+  color: var(--color-primary-600);
+  text-decoration: none;
+}
+
+.reception-page__section-header a:hover {
+  color: var(--color-primary-700);
+  text-decoration: underline;
+}
+
+
+
+/* =========================
+   SIN TURNOS
+========================= */
+
+.reception-page__empty-appointments {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: var(--spacing-12);
+
+  min-height: 100px;
+  padding: var(--spacing-24);
+}
+
+.reception-page__empty-appointments > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+
+  flex-shrink: 0;
+
+  background-color: var(--color-primary-50);
+  border-radius: 50%;
+
+  font-size: 18px;
+}
+
+.reception-page__empty-appointments strong {
+  display: block;
+
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+
+  color: var(--color-neutral-800);
+}
+
+.reception-page__empty-appointments p {
+  margin: 2px 0 0;
+
+  font-size: 12px;
+  line-height: 16px;
+
+  color: var(--color-neutral-500);
+}
+
+/* =========================
+   BÚSQUEDA
+========================= */
 
 .reception-page__search {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-12);
+  display: flex;
+  flex-direction: column;
+
+  gap: var(--spacing-16);
+
+  width: 100%;
 }
 
 .reception-page__search-header {
-    display: flex;
-    align-items: start;
-    justify-content: space-between;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-16);
+}
+
+.reception-page__search-subtitle {
+  margin: 0;
+
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+
+  color: var(--color-neutral-900);
+}
+
+.reception-page__search-description {
+  margin: 2px 0 0;
+
+  font-size: 12px;
+  line-height: 16px;
+
+  color: var(--color-neutral-500);
 }
 
 .reception-page__search-field {
-    display: flex;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+
+  max-width: 100%;
+}
+
+.reception-page__search-field label {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+
+  color: var(--color-neutral-700);
+}
+
+/* =========================
+   RESULTADOS
+========================= */
+
+.reception-page__results {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-16);
+
+  width: 100%;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 800px) {
+  .reception-page__appointment-header {
+    grid-template-columns:
+      70px
+      minmax(120px, 1fr)
+      minmax(140px, 1fr)
+      110px
+      110px;
+  }
+}
+
+@media (max-width: 700px) {
+  .reception-page {
+    gap: var(--spacing-24);
+  }
+
+  .reception-page__section-header,
+  .reception-page__search-header {
     flex-direction: column;
-    align-items: flex-start;
-    margin: 0;
-    font-family: var(--font-family-primary);
-    font-size: 14px;
-    line-height: 24px;
-    font-weight: var(--font-weight-medium);
-    color: var(--color-neutral-900);
-
-    label {
-        margin: 0;
-        font-family: var(--font-family-primary);
-        font-size: 14px;
-        line-height: 24px;
-        font-weight: var(--font-weight-medium);
-        color: var(--color-neutral-600);
-        margin-bottom: 10px !important;
-    }
-}
-
-.reception-page__search-title {
-    margin: 0;
-
-    font-family: var(--font-family-primary);
-    font-size: 18px;
-    line-height: 28px;
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-neutral-900);
-}
-
-.reception-page__appointment-header {
-    display: grid;
-    grid-template-columns: 80px 140px 200px 140px 156px 140px;
-    column-gap: var(--spacing-24);
-    justify-content: space-between;
-    gap: var(--spacing-16);
-    align-items: center;
-    padding: var(--spacing-8) var(--spacing-24);
-
-    font-size: 12px;
-    line-height: 16px;
-    font-weight: var(--font-weight-medium);
-    color: var(--color-neutral-600);
-}
-
-
-.reception-page__appointment-status {
-    text-align: center;
-    margin-left: 11px;
-}
-
-.reception-page__appointment-action {
-    text-align: right;
-    margin-left: 160px;
-}
-
-.reception-page__appointment-actions {
-    width: 260px;
-}
-
-
-/* link */
-.reception-page__appointments-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: var(--spacing-16);
-    font-family: var(--font-family-primary);
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-primary-500);
-}
-
-.reception-page__appointments-title h2 {
-    margin: 0;
-}
-
-.reception-page__appointments-title a {
-    font-size: 14px;
-    line-height: 20px;
-    font-weight: var(--font-weight-medium);
-    color: var(--color-primary-600);
-    text-decoration: none;
-}
-
-.reception-page__appointments-title a:hover {
-    text-decoration: none;
+  }
 }

@@ -1,6 +1,6 @@
-import type { AppointmentStatus } from '../../../shared/types/appointment';
-import './Status.css'
+import type { AppointmentStatus } from "../../../shared/types/appointment";
 
+import "./Status.css";
 
 const statusLabels: Record<AppointmentStatus, string> = {
   pending: "Pendiente",
@@ -10,10 +10,15 @@ const statusLabels: Record<AppointmentStatus, string> = {
   cancelled: "Cancelado",
   "no-show": "Ausente",
 };
-export function Status({ status }: { status: AppointmentStatus }) {
+
+type StatusProps = {
+  status: AppointmentStatus;
+};
+
+export function Status({ status }: StatusProps) {
   return (
     <span className={`status status--${status}`}>
       {statusLabels[status]}
     </span>
-  )
+  );
 }

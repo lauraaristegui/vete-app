@@ -1,0 +1,44 @@
+.clients-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-24);
+
+  width: 100%;
+
+}
+
+.clients-page__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-16);
+  width: 100%;
+}
+
+.clients-page__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-16);
+  width: 100%;
+}
+
+.clients-page__list-item {
+  max-width: 1130px;
+}
+
+.clients-page__search {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+  width: 100%;
+
+}
+
+.clients-page__search label {
+  font-family: var(--font-family-primary);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--color-neutral-700);
+    width: 100%;
+}

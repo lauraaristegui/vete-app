@@ -1,15 +1,30 @@
+import Button from "../../atoms/Button/Button";
 
-import Button from '../../atoms/Button/Button'
-import './AppointmentSummary.css'
+import dogImage from "../../../assets/golden-retriever.png";
+import catImage from "../../../assets/cat.png";
+import rabbitImage from "../../../assets/rabbit.png";
+
+import "./AppointmentSummary.css";
+
+type PetSpecies = "dog" | "cat" | "rabbit";
 
 type AppointmentSummaryProps = {
-  veterinarian: string
-  date: string
-  time: string
-  petName: string
-  ownerName: string
-  dni: string
-}
+  veterinarian: string;
+  date: string;
+  time: string;
+  petName: string;
+  ownerName: string;
+  dni: string;
+  species: PetSpecies;
+  onConfirm: () => void;
+  onModify: () => void;
+};
+
+const petImages = {
+  dog: dogImage,
+  cat: catImage,
+  rabbit: rabbitImage,
+};
 
 export function AppointmentSummary({
   veterinarian,
@@ -18,12 +33,13 @@ export function AppointmentSummary({
   petName,
   ownerName,
   dni,
+  species,
+  onConfirm,
+  onModify,
 }: AppointmentSummaryProps) {
   return (
     <div className="appointment-summary">
-      <h3 className="appointment-summary__title">
-        Resumen del turno
-      </h3>
+      <h3 className="appointment-summary__title">Resumen del turno</h3>
 
       <div className="appointment-summary__data">
         <div>
@@ -43,27 +59,30 @@ export function AppointmentSummary({
       </div>
 
       <div className="appointment-summary__patient">
-        <div className="appointment-summary__avatar" />
-
-        <strong>{petName}</strong>
-
-        <div className="appointment-summary__owner">
-          <span>Responsable</span>
-          <span>{ownerName}</span>
+        <div className="appointment-summary__avatar">
+          <img src={petImages[species]} alt={petName} />
         </div>
 
-        <span>DNI {dni}</span>
+        <div className="appointment-summary__patient-info">
+          <strong>{petName}</strong>
+
+          <span className="appointment-summary__owner">
+            Responsable: {ownerName}
+          </span>
+
+          <span className="appointment-summary__dni">DNI {dni}</span>
+        </div>
       </div>
 
       <div className="appointment-summary__actions">
-        <Button variant="primary">
+        <Button variant="primary" onClick={onConfirm}>
           Confirmar consulta
         </Button>
 
-        <Button variant="neutral">
-          Cancelar
+        <Button variant="neutral" onClick={onModify}>
+          Modificar
         </Button>
       </div>
     </div>
-  )
+  );
 }
