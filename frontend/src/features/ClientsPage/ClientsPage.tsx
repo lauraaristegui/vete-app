@@ -70,9 +70,8 @@ export function ClientsPage() {
               />
             ) : (
               filteredClients.map((client) => (
-                <div className="clients-page__list-item">
+                <div key={client.id} className="clients-page__list-item">
                   <ClientCard
-                    key={client.id}
                     name={client.name}
                     dni={client.dni}
                     pets={client.pets}

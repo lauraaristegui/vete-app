@@ -1,13 +1,68 @@
-## [Unreleased]
+## [0.4.0] - 2026-09-21
 
-### 🚀 In Progress
+### ✨ Added
 
-- Veterinary consultation flow.
-- Clinical consultation creation.
-- Clinical history persistence.
-- Agenda visual refinement.
+#### BFF
 
----
+- Added initial Node.js and Express BFF.
+- Added layered backend architecture using Routes, Controllers, Services, and Repositories.
+- Added mock data repository as the initial data source.
+- Added JSON request body handling with Express.
+- Added CORS configuration for communication between the React frontend and BFF.
+
+#### Clients API
+
+- Added `GET /clients`.
+- Added `GET /clients/:id`.
+- Added `POST /clients`.
+- Added `PATCH /clients/:id`.
+- Added `POST /clients/:clientId/pets`.
+- Added `404` responses for non-existing clients.
+
+#### Pets API
+
+- Added `GET /pets/:petId`.
+- Added `PATCH /pets/:petId`.
+- Added global pet identifiers across clients.
+- Added `404` responses for non-existing pets.
+
+#### Frontend API integration
+
+- Added frontend service layer for client and pet HTTP operations.
+- Connected client loading to `GET /clients`.
+- Connected client creation to `POST /clients`.
+- Connected pet creation to `POST /clients/:clientId/pets`.
+- Integrated BFF data with `ClientsProvider`.
+- Added complete client and initial pet creation flow from `NewClientPage`.
+
+### ♻️ Changed
+
+#### Client state
+
+- Replaced frontend client mock initialization with data loaded from the BFF.
+- Kept `ClientsContext` as the shared application state for client-related views.
+- Moved client and pet ID generation responsibility from the frontend to the BFF.
+- Aligned the client data contract between the frontend and BFF.
+
+#### Architecture
+
+- Started migration from frontend-local mock data to BFF-managed application data.
+- Introduced Repository abstraction to isolate data access from business and HTTP layers.
+- Prepared the data layer for migration from in-memory mock data to persistent storage.
+
+### 🛠️ Fixed
+
+- Fixed client list rendering key warning.
+- Fixed pet creation for existing clients.
+- Fixed pet lookup using globally unique pet IDs.
+- Fixed pet update flow using `PATCH /pets/:petId`.
+- Fixed CORS errors between the frontend on port `3002` and BFF on port `3000`.
+
+### ⚠️ Known limitations
+
+- Client and pet data is currently stored in memory.
+- Created or updated data is lost when the BFF process restarts.
+- Persistent storage will be introduced in the next development stage.
 
 ## [0.3.2] - 2026-09-20
 

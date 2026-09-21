@@ -6,35 +6,41 @@ import { PageHeader } from "../../design-system/molecules/PageHeader/PageHeader"
 
 import "./NewClientPage.css";
 import { NewPatientForm, type NewPatientData } from "../../shared/components/ NewPatientForm/NewPatientForm";
+import { createClient, createPet } from "../services/client.service";
 
 export function NewClientPage() {
   const navigate = useNavigate();
   const { addClient } = useClients();
 
-const handleCreateClient = (patient: NewPatientData) => {
-  const newClient = {
-    id: crypto.randomUUID(),
-    name: patient.ownerName,
-    dni: patient.dni,
-    phone: patient.phone,
-    email: patient.email,
-    address: patient.address,
-    pets: [
-      {
-        id: crypto.randomUUID(),
-        name: patient.petName,
-        species: patient.species,
-        breed: patient.breed,
-        age: patient.age,
-      },
-    ],
-  };
+const handleCreateClient = async (patient: NewPatientData) => {
+  try {
+    const newClient = await createClient({
+      name: patient.ownerName,
+      dni: patient.dni,
+      phone: patient.phone,
+      email: patient.email,
+      address: patient.address,
+    });
 
-  addClient(newClient);
+    const newPet = await createPet(newClient.id, {
+      name: patient.petName,
+      species: patient.species,
+      breed: patient.breed,
+      age: patient.age,
+    });
 
-  navigate(`/clientes/${newClient.id}`);
+    const clientWithPet = {
+      ...newClient,
+      pets: [newPet],
+    };
+
+    addClient(clientWithPet);
+
+    navigate(`/clientes/${newClient.id}`);
+  } catch (error) {
+    console.error("Error creando cliente:", error);
+  }
 };
-
   return (
     <div className="new-client-page">
       <PageHeader
