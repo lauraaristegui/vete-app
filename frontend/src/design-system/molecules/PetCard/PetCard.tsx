@@ -16,6 +16,7 @@ type PetCardProps = {
   variant?: "default" | "compact" | "search";
   onViewHistory?: () => void;
   onNewAppointment?: () => void;
+  onEdit?: () => void;
 };
 
 const petImages = {
@@ -31,12 +32,22 @@ export function PetCard({
   species,
   onViewHistory,
   onNewAppointment,
+  onEdit,
   variant = "default",
 }: PetCardProps) {
   const isCompact = variant === "compact";
   const isSearch = variant === "search";
 
   const options = [
+    ...(onEdit
+      ? [
+          {
+            label: "Editar mascota",
+            value: "edit",
+          },
+        ]
+      : []),
+
     ...(onViewHistory
       ? [
           {
@@ -57,6 +68,10 @@ export function PetCard({
   ];
 
   const handleAction = (value: string) => {
+    if (value === "edit") {
+      onEdit?.();
+    }
+
     if (value === "history") {
       onViewHistory?.();
     }
@@ -69,11 +84,7 @@ export function PetCard({
   return (
     <div
       className={`pet-card ${
-        isCompact
-          ? "pet-card--compact"
-          : isSearch
-            ? "pet-card--search"
-            : ""
+        isCompact ? "pet-card--compact" : isSearch ? "pet-card--search" : ""
       }`}
     >
       <div className="pet-card__main">

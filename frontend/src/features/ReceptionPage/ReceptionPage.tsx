@@ -143,6 +143,9 @@ export function ReceptionPage() {
                 onAddPet={(clientId) => {
                   navigate(`/clientes/${clientId}/mascotas/nueva`);
                 }}
+                onEditPet={(petId) => {
+                  navigate(`/clientes/${client.id}/mascotas/${petId}/editar`);
+                }}
                 onViewHistory={(petId) => {
                   navigate(`/historia-clinica/${petId}`);
                 }}

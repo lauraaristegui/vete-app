@@ -18,17 +18,24 @@ export type PetFormData = {
 type PetFormProps = {
   onSubmit: (data: PetFormData) => void;
   submitLabel?: string;
+  initialData?: PetFormData;
 };
 
 export function PetForm({
   onSubmit,
   submitLabel = "Agregar mascota",
+  initialData,
 }: PetFormProps) {
-  const [name, setName] = useState("");
-  const [species, setSpecies] =
-    useState<PetSpecies>("dog");
-  const [breed, setBreed] = useState("");
-  const [age, setAge] = useState("");
+  const [name, setName] = useState(initialData?.name ?? "");
+
+  const [species, setSpecies] = useState<PetSpecies>(
+    initialData?.species ?? "dog",
+  );
+
+  const [breed, setBreed] = useState(initialData?.breed ?? "");
+
+  const [age, setAge] = useState(initialData?.age ?? "");
+
 
   const canSubmit = name.trim() !== "";
 
