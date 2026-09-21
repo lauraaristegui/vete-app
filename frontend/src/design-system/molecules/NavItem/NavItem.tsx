@@ -1,26 +1,31 @@
-import './NavItem.css'
+import type { LucideIcon } from "lucide-react";
+
+import "./NavItem.css";
 
 type NavItemProps = {
-  label: string
-  active?: boolean
-}
+  label: string;
+  icon: LucideIcon;
+  active?: boolean;
+};
 
 export function NavItem({
   label,
+  icon: Icon,
   active = false,
 }: NavItemProps) {
   return (
-    <button
-      className={`nav-item ${active ? 'nav-item--active' : ''}`}
-      type="button"
+    <div
+      className={`nav-item ${
+        active ? "nav-item--active" : ""
+      }`}
     >
       <span className="nav-item__icon">
-        ⌂
+        <Icon size={18} strokeWidth={1.8} />
       </span>
 
       <span className="nav-item__label">
         {label}
       </span>
-    </button>
-  )
+    </div>
+  );
 }

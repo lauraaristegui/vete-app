@@ -10,17 +10,32 @@
   box-sizing: border-box;
 }
 
-.sidebar__brand {
-  margin-bottom: var(--spacing-32);
-
-  font-size: 20px;
-  line-height: 28px;
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-neutral-900);
-}
-
 .sidebar__navigation {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-8);
+}
+
+.sidebar__navigation a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.sidebar__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  margin-bottom: var(--spacing-24);
+}
+.sidebar__brand-icon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.sidebar__brand-name {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 700;
+  color: var(--color-neutral-900);
 }

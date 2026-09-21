@@ -1,27 +1,55 @@
 .app-layout {
   display: flex;
+
+  width: 100%;
   min-height: 100vh;
+
+  background-color: var(--color-background-app);
 }
+
+/* =========================
+   SIDEBAR
+========================= */
 
 .app-layout__sidebar {
-  width: 240px;
+  width: 220px;
+
   flex-shrink: 0;
 
-  border-right: 1px solid var(--color-neutral-200);
+  background-color: var(--color-background-sidebar);
+
+  border-right: 1px solid var(--color-border-soft);
 }
 
-.app-layout__content {
-  flex: 1;
-  padding: var(--spacing-24);
-}
+/* =========================
+   CONTENT
+========================= */
 
 .app-layout__content {
-  flex: 1;
-  padding: var(--spacing-24);
+   flex: 1;
+  min-width: 0;
+  padding: 20px 40px 48px 32px;
+  background-color: var(--color-background-app);
 }
 
 .app-layout__content-container {
   width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
+  max-width: 1180px;
+  margin: 0;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1200px) {
+  .app-layout__content {
+    padding: var(--spacing-24);
+  }
+}
+
+@media (max-width: 800px) {
+  .app-layout__content {
+    padding: var(--spacing-16);
+  }
 }

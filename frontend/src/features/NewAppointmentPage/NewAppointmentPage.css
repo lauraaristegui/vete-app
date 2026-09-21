@@ -1,0 +1,108 @@
+.new-appointment-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-24);
+  width: 100%;
+
+  padding-left: var(--spacing-32);
+  box-sizing: border-box;
+}
+/* Columna principal de la pantalla */
+.new-appointment-page__content,
+.new-appointment-page__schedule,
+.new-appointment-page__schedule-summary,
+.new-appointment-page__summary {
+  width: 100%;
+  max-width: 760px;
+}
+
+/* Veterinario */
+.new-appointment-page__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+}
+
+/* Fecha */
+.new-appointment-page__date {
+  width: 100%;
+}
+
+.new-appointment-page__date h2 {
+  margin: 0 0 var(--spacing-12);
+  padding: 0;
+
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  color: var(--color-neutral-900);
+}
+
+/* Horarios */
+.new-appointment-page__times {
+  width: 100%;
+  margin-top: var(--spacing-24);
+}
+
+.new-appointment-page__times h2 {
+  margin: 0 0 var(--spacing-12);
+  padding: 0;
+
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  color: var(--color-neutral-900);
+}
+
+.new-appointment-page__time-slots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-8);
+}
+
+/* Aceptar horario */
+.new-appointment-page__schedule-action {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--spacing-16);
+}
+
+/* Fecha y horario ya confirmados */
+.new-appointment-page__schedule-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-16);
+
+  padding: var(--spacing-16);
+
+  background-color: var(--color-surface-soft);
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius-12);
+
+  box-sizing: border-box;
+}
+
+.new-appointment-page__schedule-summary > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.new-appointment-page__schedule-summary-label {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--color-neutral-500);
+}
+
+.new-appointment-page__schedule-summary strong {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  color: var(--color-neutral-900);
+}
+
+/* Resumen final */
+.new-appointment-page__summary {
+  width: 100%;
+}

@@ -1,9 +1,7 @@
 import { createContext } from "react";
+import type { Appointment, AppointmentStatus } from "../../../shared/types/appointment";
 
-import type {
-  Appointment,
-  AppointmentStatus,
-} from "../../shared/types/appointment";
+
 
 export type AppointmentsContextType = {
   appointments: Appointment[];
@@ -11,6 +9,7 @@ export type AppointmentsContextType = {
     id: string,
     newStatus: AppointmentStatus
   ) => void;
+  addAppointment: (appointment: Appointment) => void;
 };
 
 export const AppointmentsContext =

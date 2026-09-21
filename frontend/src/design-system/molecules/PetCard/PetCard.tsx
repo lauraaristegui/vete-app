@@ -1,7 +1,10 @@
 import "./PetCard.css";
+
 import dogImage from "../../../assets/golden-retriever.png";
 import catImage from "../../../assets/cat.png";
 import rabbitImage from "../../../assets/rabbit.png";
+
+import { ActionMenu } from "../../molecules/ActionMenu/ActionMenu";
 
 type PetSpecies = "dog" | "cat" | "rabbit";
 
@@ -10,6 +13,9 @@ type PetCardProps = {
   petInfo: string;
   ownerName: string;
   species: PetSpecies;
+  variant?: "default" | "compact" | "search";
+  onViewHistory?: () => void;
+  onNewAppointment?: () => void;
 };
 
 const petImages = {
@@ -23,25 +29,87 @@ export function PetCard({
   petInfo,
   ownerName,
   species,
+  onViewHistory,
+  onNewAppointment,
+  variant = "default",
 }: PetCardProps) {
+  const isCompact = variant === "compact";
+  const isSearch = variant === "search";
+
+  const options = [
+    ...(onViewHistory
+      ? [
+          {
+            label: "Ver historia clínica",
+            value: "history",
+          },
+        ]
+      : []),
+
+    ...(onNewAppointment
+      ? [
+          {
+            label: "Nuevo turno",
+            value: "appointment",
+          },
+        ]
+      : []),
+  ];
+
+  const handleAction = (value: string) => {
+    if (value === "history") {
+      onViewHistory?.();
+    }
+
+    if (value === "appointment") {
+      onNewAppointment?.();
+    }
+  };
+
   return (
-    <div className="pet-card">
-      <div className="pet-card__header">
-        <div className="pet-card__avatar">
-          <img src={petImages[species]} alt="" />
+    <div
+      className={`pet-card ${
+        isCompact
+          ? "pet-card--compact"
+          : isSearch
+            ? "pet-card--search"
+            : ""
+      }`}
+    >
+      <div className="pet-card__main">
+        <div className="pet-card__header">
+          <div className="pet-card__avatar">
+            <img src={petImages[species]} alt="" />
+          </div>
+
+          <div className="pet-card__pet-info">
+            <h3>{petName}</h3>
+            <span>{petInfo}</span>
+
+            {isSearch && (
+              <span className="pet-card__search-owner">
+                Responsable: {ownerName}
+              </span>
+            )}
+          </div>
         </div>
-        <div>
-          <h3>{petName}</h3>
-          <span>{petInfo}</span>
-        </div>
+
+        {!isCompact && !isSearch && (
+          <div className="pet-card__owner">
+            <span>Responsable</span>
+            <span>{ownerName}</span>
+          </div>
+        )}
       </div>
 
-      <div className="pet-card__owner">
-        <span>Responsable</span>
-        <span>{ownerName}</span>
-      </div>
-
-      <button className="pet-card__history">Ver historia clínica →</button>
+      {options.length > 0 && (
+        <ActionMenu
+          label={`Acciones de ${petName}`}
+          options={options}
+          onSelect={handleAction}
+          iconOnly
+        />
+      )}
     </div>
   );
 }

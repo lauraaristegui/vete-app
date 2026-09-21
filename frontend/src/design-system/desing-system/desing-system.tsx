@@ -1,23 +1,22 @@
-import { Textarea } from '../atoms/Textarea/Textarea'
-import { PetCard } from '../molecules/PetCard/PetCard'
-import { CardConsultation } from '../organisms/CardConsultation/CardConsultation'
-import { PatientHeader } from '../organisms/PatientHeader/PatientHeader'
-import { SearchResultOwner } from '../organisms/SearchResultOwner/SearchResultOwner'
-import { TimeSlot } from '../atoms/TimeSlot/TimeSlot'
-import { InputText } from '../molecules/InputText/InputText'
-import { NavItem } from '../molecules/NavItem/NavItem'
-import { Select } from '../molecules/Select/Select'
-import { AppointmentRow } from '../organisms/AppointmentRow/AppointmentRow'
-import { Form } from '../organisms/Form/Form'
-import { AppointmentSummary } from '../organisms/AppointmentSummary/AppointmentSummary'
+import { Textarea } from "../molecules/Textarea/Textarea";
+import { PetCard } from "../molecules/PetCard/PetCard";
+import { CardConsultation } from "../organisms/CardConsultation/CardConsultation";
+import { PatientHeader } from "../organisms/PatientHeader/PatientHeader";
+import { SearchResultOwner } from "../organisms/SearchResultOwner/SearchResultOwner";
+import { TimeSlot } from "../atoms/TimeSlot/TimeSlot";
+import { InputText } from "../molecules/InputText/InputText";
+import { NavItem } from "../molecules/NavItem/NavItem";
+import { Select } from "../molecules/Select/Select";
+import { AppointmentRow } from "../organisms/AppointmentRow/AppointmentRow";
+import { Form } from "../organisms/Form/Form";
+import { AppointmentSummary } from "../organisms/AppointmentSummary/AppointmentSummary";
 
-import Input from '../atoms/Input/Input'
-import Button from '../atoms/Button/Button'
-
+import Input from "../atoms/Input/Input";
+import Button from "../atoms/Button/Button";
 
 function DesignSystem() {
   return (
-     <>
+    <>
       <h1>VeteApp Design-System</h1>
       <div className="app-container">
         <div className="atoms-test">
@@ -178,7 +177,7 @@ function DesignSystem() {
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default DesignSystem
+export default DesignSystem;

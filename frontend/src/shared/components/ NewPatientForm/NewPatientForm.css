@@ -1,0 +1,169 @@
+.new-patient-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-24);
+
+  width: 100%;
+  max-width: 760px;
+
+  padding: var(--spacing-24);
+
+  background-color: #ffffff;
+  border: 1px solid var(--color-neutral-200);
+  border-radius: var(--radius-12);
+}
+
+/* SECCIONES */
+
+.new-patient-form__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-16);
+}
+
+.new-patient-form__section + .new-patient-form__section {
+  padding-top: var(--spacing-24);
+  border-top: 1px solid var(--color-neutral-200);
+}
+
+.new-patient-form__section-header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-12);
+}
+
+.new-patient-form__section-header h2 {
+  margin: 0;
+
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+
+  color: var(--color-neutral-900);
+}
+
+.new-patient-form__section-header p {
+  margin: 2px 0 0;
+
+  font-family: var(--font-family-primary);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+
+  color: var(--color-neutral-500);
+}
+
+.new-patient-form__section-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+
+  background-color: var(--color-primary-50);
+  border-radius: 50%;
+
+  font-size: 14px;
+}
+
+.new-patient-form__section-icon--pet {
+  background-color: var(--color-success-50);
+}
+
+/* RESPONSABLE */
+
+.new-patient-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-16);
+}
+
+/* MASCOTA */
+
+.new-patient-form__pet-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 160px;
+  gap: var(--spacing-16);
+
+  /* antes: align-items: end; */
+  align-items: start;
+}
+
+/* CAMPOS */
+
+.new-patient-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+}
+
+.new-patient-form__field label {
+  font-family: var(--font-family-primary);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+
+  color: var(--color-neutral-700);
+}
+
+/* INPUTS */
+
+.new-patient-form input {
+  width: 100%;
+  min-height: 40px;
+
+  padding: 10px 12px;
+
+  font-family: var(--font-family-primary);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+
+  color: var(--color-neutral-900);
+  background-color: #ffffff;
+
+  border: 1px solid var(--color-neutral-300);
+  border-radius: var(--radius-8);
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.new-patient-form input::placeholder {
+  color: var(--color-neutral-400);
+}
+
+.new-patient-form input:hover {
+  border-color: var(--color-neutral-400);
+}
+
+.new-patient-form input:focus {
+  border-color: var(--color-primary-500);
+  box-shadow: 0 0 0 3px var(--color-primary-50);
+}
+
+/* ACCIONES */
+
+.new-patient-form__actions {
+  display: flex;
+  justify-content: flex-end;
+
+  padding-top: var(--spacing-16);
+
+  border-top: 1px solid var(--color-neutral-200);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 700px) {
+  .new-patient-form__row,
+  .new-patient-form__pet-row {
+    grid-template-columns: 1fr;
+  }
+}

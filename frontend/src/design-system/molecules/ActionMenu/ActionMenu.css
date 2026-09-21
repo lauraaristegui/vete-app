@@ -44,3 +44,29 @@
 .action-menu__option:hover {
   background: var(--color-neutral-50);
 }
+
+.action-menu__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+  padding: 0;
+
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-8);
+
+  font-size: 22px;
+  line-height: 1;
+  font-weight: 600;
+  color: var(--color-neutral-600);
+
+  cursor: pointer;
+}
+
+.action-menu__trigger:hover {
+  background-color: var(--color-primary-50);
+  color: var(--color-primary-700);
+}

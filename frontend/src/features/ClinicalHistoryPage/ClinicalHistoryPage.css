@@ -1,0 +1,65 @@
+.clinical-history-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-24);
+  width: 100%;
+}
+
+.clinical-history-page__search {
+  width: 100%;
+}
+
+.clinical-history-page__results {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-12);
+  width: 100%;
+}
+
+.clinical-history-page__results h2 {
+  margin: 0;
+
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+
+  color: var(--color-neutral-900);
+}
+
+.clinical-history-page__result {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-16);
+
+  width: 100%;
+  padding: var(--spacing-16);
+  box-sizing: border-box;
+
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius-12);
+}
+
+@media (max-width: 700px) {
+  .clinical-history-page__result {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+.clinical-history-page__search {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+  width: 100%;
+}
+
+.clinical-history-page__search-label {
+  font-family: var(--font-family-primary);
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--color-neutral-700);
+}

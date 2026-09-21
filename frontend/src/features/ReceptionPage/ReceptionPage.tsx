@@ -1,89 +1,107 @@
 import { useState } from "react";
-import { useAppointments } from "../../app/context/useAppointments";
+import { Link, useNavigate } from "react-router";
+
+import { useAppointments } from "../../app/context/Appointments/useAppointments";
+import { useClients } from "../../app/context/clients/useClients";
 
 import Button from "../../design-system/atoms/Button/Button";
 import Input from "../../design-system/atoms/Input/Input";
-import { AppointmentRow } from "../../design-system/organisms/AppointmentRow/AppointmentRow";
-import "./ReceptionPage.css";
-import { SearchResultOwner } from "../../design-system/organisms/SearchResultOwner/SearchResultOwner";
-import { normalizeText } from "../../shared/utils/normalizeText";
-import { SearchNoResults } from "../../shared/components/SearchNoResults/SearchNoResults";
-import { Link } from "react-router";
 import { PageHeader } from "../../design-system/molecules/PageHeader/PageHeader";
+import { SearchResultOwner } from "../../design-system/organisms/SearchResultOwner/SearchResultOwner";
+
+import { SearchNoResults } from "../../shared/components/SearchNoResults/SearchNoResults";
+import { normalizeText } from "../../shared/utils/normalizeText";
+import type { AppointmentStatus } from "../../shared/types/appointment";
+
+import "./ReceptionPage.css";
+import { AppointmentList } from "../../design-system/organisms/AppointmentList/AppointmentList";
 
 export function ReceptionPage() {
   const [search, setSearch] = useState("");
 
-const { appointments } = useAppointments();
+  const navigate = useNavigate();
 
-  const client = {
-    name: "Rosario Gomez",
-    dni: "36.547.658",
-    phone: "2449 123456",
-    email: "laura@email.com",
-    pets: [
-      {
-        id: "1",
-        name: "Luna",
-        info: "Caniche • 2 años",
-        species: "dog" as const,
-      },
-      {
-        id: "2",
-        name: "Mía",
-        info: "Dálmata • 2 años",
-        species: "dog" as const,
-      },
-    ],
+  const { appointments } = useAppointments();
+  const { clients } = useClients();
+
+  const statusPriority: Record<AppointmentStatus, number> = {
+    pending: 1,
+    received: 2,
+    "in-consultation": 3,
+    completed: 4,
+    "no-show": 5,
+    cancelled: 6,
   };
 
-  const hasSearchResult =
-    search.length > 0 &&
-    (normalizeText(client.name).includes(normalizeText(search)) ||
-      normalizeText(client.dni).includes(normalizeText(search)) ||
+  const today = new Date();
+
+  const todayFormatted = [
+    today.getFullYear(),
+    String(today.getMonth() + 1).padStart(2, "0"),
+    String(today.getDate()).padStart(2, "0"),
+  ].join("-");
+
+  const receptionAppointments = appointments
+    .filter((appointment) => appointment.date === todayFormatted)
+    .sort((a, b) => statusPriority[a.status] - statusPriority[b.status])
+    .slice(0, 3);
+
+  const normalizedSearch = normalizeText(search);
+
+  const filteredClients = clients.filter((client) => {
+    return (
+      normalizeText(client.name).includes(normalizedSearch) ||
+      normalizeText(client.dni).includes(normalizedSearch) ||
       client.pets.some((pet) =>
-        normalizeText(pet.name).includes(normalizeText(search)),
-      ));
+        normalizeText(pet.name).includes(normalizedSearch),
+      )
+    );
+  });
 
   return (
     <div className="reception-page">
       <header className="reception-page__header">
-        <div className="reception-page__appointments-title">
         <PageHeader title="Recepción" description="Turnos y pacientes de hoy" />
+      </header>
+
+      {/* TURNOS DE HOY */}
+
+      <section className="reception-page__appointments">
+        <div className="reception-page__section-header">
+          <div>
+            <h2>Turnos de hoy</h2>
+            <p>Próximos turnos y estado de atención.</p>
+          </div>
+
           <Link to="/agenda">Ver todos →</Link>
         </div>
-      </header>
-      <section className="reception-page__appointments">
-        <div className="reception-page__appointment-header">
-          <span>Hora</span>
-          <span>Paciente</span>
-          <span>Responsable</span>
-          <span>DNI</span>
-          <span>Estado</span>
-          <span>Acción</span>
-        </div>
 
-        <div className="reception-page__appointment-list">
-          {appointments.slice(0, 3).map((appointment) => (
-            <AppointmentRow
-              key={appointment.id}
-              time={appointment.time}
-              petName={appointment.petName}
-              ownerName={appointment.ownerName}
-              dni={appointment.dni}
-              status={appointment.status}
-            />
-          ))}
-        </div>
+        <AppointmentList
+          appointments={receptionAppointments}
+          showActions={false}
+        />
       </section>
+
+      {/* BÚSQUEDA */}
 
       <section className="reception-page__search">
         <div className="reception-page__search-header">
-          <h2 className="reception-page__search-subtitle">
-            Buscar cliente o mascota
-          </h2>
+          <div>
+            <h2 className="reception-page__search-subtitle">
+              Buscar cliente o mascota
+            </h2>
 
-          <Button variant="secondary">+ Nuevo cliente</Button>
+            <p className="reception-page__search-description">
+              Consultá rápidamente los datos de un responsable o paciente.
+            </p>
+          </div>
+
+          <Button
+            variant="secondary"
+            onClick={() => navigate("/clientes/nuevo")}
+          >
+            + Nuevo cliente
+          </Button>
         </div>
 
         <div className="reception-page__search-field">
@@ -95,21 +113,53 @@ const { appointments } = useAppointments();
             id="reception-search"
             placeholder="Buscar cliente o mascota..."
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(event) => setSearch(event.target.value)}
           />
         </div>
       </section>
+
+      {/* RESULTADOS */}
+
       {search.length > 0 &&
-        (hasSearchResult ? (
-          <SearchResultOwner
-            name={client.name}
-            dni={client.dni}
-            phone={client.phone}
-            email={client.email}
-            pets={client.pets}
-          />
+        (filteredClients.length > 0 ? (
+          <div className="reception-page__results">
+            {filteredClients.map((client) => (
+              <SearchResultOwner
+                key={client.id}
+                clientId={client.id}
+                name={client.name}
+                dni={client.dni}
+                phone={client.phone}
+                email={client.email}
+                pets={client.pets.map((pet) => ({
+                  id: pet.id,
+                  name: pet.name,
+                  info: [pet.breed, pet.age].filter(Boolean).join(" • "),
+                  species: pet.species,
+                }))}
+                onEdit={(clientId) => {
+                  navigate(`/clientes/${clientId}/editar`);
+                }}
+                onAddPet={(clientId) => {
+                  navigate(`/clientes/${clientId}/mascotas/nueva`);
+                }}
+                onViewHistory={(petId) => {
+                  navigate(`/historia-clinica/${petId}`);
+                }}
+                onNewAppointment={(patient) => {
+                  navigate("/agenda/nuevo-turno", {
+                    state: { patient },
+                  });
+                }}
+              />
+            ))}
+          </div>
         ) : (
-          <SearchNoResults search={search} showButton={true} description="No encontramos ningún cliente o mascota que coincida con" />
+          <SearchNoResults
+            search={search}
+            showButton={true}
+            description="No encontramos ningún cliente o mascota que coincida con"
+          />
         ))}
     </div>
   );
