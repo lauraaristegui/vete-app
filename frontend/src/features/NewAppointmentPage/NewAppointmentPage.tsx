@@ -9,6 +9,10 @@ import { Calendar } from "../../design-system/molecules/Calendar/Calendar";
 import { PageHeader } from "../../design-system/molecules/PageHeader/PageHeader";
 import { Select } from "../../design-system/molecules/Select/Select";
 import { AppointmentSummary } from "../../design-system/organisms/AppointmentSummary/AppointmentSummary";
+import {
+  createClient,
+  createPet,
+} from "../services/client.service";
 
 import {
   NewPatientForm,
@@ -16,6 +20,7 @@ import {
 } from "../../shared/components/ NewPatientForm/NewPatientForm";
 
 import "./NewAppointmentPage.css";
+import { createAppointment } from "../services/appointment.service";
 
 export function NewAppointmentPage() {
   const { appointments, addAppointment } = useAppointments();
@@ -67,13 +72,10 @@ export function NewAppointmentPage() {
 
   const handleDateChange = (selectedDate: string) => {
     setDate(selectedDate);
-
-    // Si cambia la fecha, descartamos cualquier horario anterior.
     setTime("");
     setIsDateConfirmed(true);
     setIsScheduleConfirmed(false);
   };
-
   const handleTimeSelect = (selectedTime: string) => {
     setTime(selectedTime);
 
@@ -81,25 +83,47 @@ export function NewAppointmentPage() {
     setIsScheduleConfirmed(false);
   };
 
-  const handleConfirmAppointment = () => {
-    if (!patientData) return;
+const handleConfirmAppointment = async () => {
+  if (!patientData) return;
 
-    const newAppointment = {
-      id: crypto.randomUUID(),
+  try {
+    let petId = patientData.petId;
+
+    // Si no tiene petId, es un cliente/paciente nuevo.
+    if (!petId) {
+      const createdClient = await createClient({
+        name: patientData.ownerName,
+        dni: patientData.dni,
+        phone: patientData.phone,
+        email: patientData.email,
+        address: patientData.address,
+      });
+
+      const createdPet = await createPet(createdClient.id, {
+        name: patientData.petName,
+        species: patientData.species,
+        breed: patientData.breed,
+        age: patientData.age,
+      });
+
+      petId = createdPet.id;
+    }
+
+    const createdAppointment = await createAppointment({
+      petId,
       date,
       time,
       veterinarian,
-      petName: patientData.petName,
-      ownerName: patientData.ownerName,
-      dni: patientData.dni,
-      species: patientData.species,
-      status: "pending" as const,
-    };
+    });
 
-    addAppointment(newAppointment);
+    addAppointment(createdAppointment);
 
     navigate("/agenda");
-  };
+  } catch (error) {
+    console.error("Error creando turno:", error);
+  }
+};
+
 
   return (
     <section className="new-appointment-page">
@@ -160,34 +184,6 @@ export function NewAppointmentPage() {
           )}
         </div>
       )}
-
-      {/* Fecha y horario confirmados */}
-      {/* {isScheduleConfirmed && (
-        <div className="new-appointment-page__schedule-summary">
-          <div>
-            <span className="new-appointment-page__schedule-summary-label">
-              Fecha y horario
-            </span>
-
-            <strong>
-              {new Date(`${date}T00:00:00`).toLocaleDateString("es-AR", {
-                day: "numeric",
-                month: "long",
-                year: "numeric",
-              })}
-              {" · "}
-              {time}
-            </strong>
-          </div>
-
-          <Button
-            variant="secondary"
-            onClick={() => setIsScheduleConfirmed(false)}
-          >
-            Modificar
-          </Button>
-        </div>
-      )} */}
 
       {/* Formulario de nuevo paciente */}
       {isScheduleConfirmed && !patientData && (

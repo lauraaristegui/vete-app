@@ -109,6 +109,15 @@ export function AgendaPage() {
         <div className="agenda-page__search">
           <label htmlFor="appointment-search">Buscar turno</label>
 
+          {/* <Input
+            id="appointment-search"
+            placeholder="Buscar por paciente, responsable o DNI..."
+            value={search}
+            onChange={(event) => {
+              setSearch(event.target.value);
+              setCurrentPage(1);
+            }}
+          /> */}
           <Input
             id="appointment-search"
             placeholder="Buscar por paciente, responsable o DNI..."
@@ -118,6 +127,8 @@ export function AgendaPage() {
               setCurrentPage(1);
             }}
           />
+
+          <p>Buscando: {search}</p>
         </div>
 
         <div className="agenda-page__date-header">

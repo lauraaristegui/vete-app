@@ -18,6 +18,8 @@ import {
 export type PetSpecies = "dog" | "cat" | "rabbit";
 
 export type NewPatientData = {
+  petId?: string;
+
   ownerName: string;
   dni: string;
   phone: string;
