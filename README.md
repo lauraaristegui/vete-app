@@ -155,3 +155,270 @@ Node.js + Express BFF
    Repositories
         ↓
       SQLite
+
+      El frontend utiliza React Context para mantener el estado actual de la
+aplicación y sincronizar inmediatamente los cambios en la interfaz.
+
+El BFF centraliza el acceso a datos y utiliza una arquitectura por capas:
+
+Route → Controller → Service → Repository
+
+SQLite funciona como fuente de persistencia de los datos del MVP.
+
+🗄️ Modelo de datos
+
+Las principales relaciones del dominio son:
+
+Client
+  │
+  └── Pet
+       │
+       ├── Appointment
+       │
+       └── Consultation
+
+Cada cliente puede tener múltiples mascotas.
+
+Cada mascota puede tener múltiples turnos y consultas veterinarias.
+
+La historia clínica se construye a partir del conjunto de consultas
+registradas para cada mascota.
+
+Actualmente se persisten en SQLite:
+
+Clients
+Pets
+Appointments
+Consultations
+⚛️ Frontend
+
+El frontend está desarrollado con:
+
+React
+TypeScript
+React Router
+Context API
+CSS
+Design System propio
+
+La estructura sigue una organización basada en features y componentes
+reutilizables:
+
+src/
+├── app/
+├── assets/
+├── design-system/
+├── features/
+├── shared/
+└── main.tsx
+
+El Design System contiene componentes reutilizables independientes del
+dominio, mientras que las funcionalidades específicas de negocio se
+organizan dentro de features.
+
+🔌 BFF
+
+El proyecto incluye un BFF desarrollado con:
+
+Node.js
+Express
+SQLite
+REST APIs
+
+La arquitectura del BFF separa responsabilidades entre:
+
+Routes
+  ↓
+Controllers
+  ↓
+Services
+  ↓
+Repositories
+  ↓
+SQLite
+
+Entre los endpoints implementados se encuentran:
+
+Clients
+GET    /clients
+GET    /clients/:id
+POST   /clients
+PATCH  /clients/:id
+POST   /clients/:clientId/pets
+
+Pets
+GET    /pets/:petId
+PATCH  /pets/:petId
+
+Appointments
+GET    /appointments
+POST   /appointments
+PATCH  /appointments/:id/status
+
+Consultations
+GET    /consultations
+POST   /consultations
+📅 Gestión de turnos
+
+La Agenda permite:
+
+Crear nuevos turnos.
+Crear turnos para pacientes existentes.
+Crear cliente, mascota y turno dentro de un mismo flujo.
+Buscar turnos por paciente, responsable o DNI.
+Navegar entre fechas.
+Visualizar estados de atención.
+Actualizar el estado de un turno.
+Mantener los cambios persistidos después de recargar la aplicación.
+
+El ciclo de estados implementado contempla:
+
+Pendiente
+   ↓
+Recepcionado
+   ↓
+En consulta
+   ↓
+Atendido
+
+Además se contemplan los estados:
+
+Cancelado.
+Ausente.
+🩺 Historia clínica
+
+Cada mascota posee una historia clínica longitudinal construida a partir de
+sus consultas veterinarias.
+
+Desde la historia clínica es posible:
+
+Consultar las consultas anteriores.
+Visualizar motivo y diagnóstico.
+Expandir el detalle de tratamiento y observaciones.
+Registrar una nueva consulta.
+Persistir las consultas en SQLite.
+
+Cada consulta contiene:
+
+Fecha
+Motivo
+Diagnóstico
+Tratamiento
+Observaciones
+✅ Validaciones
+
+Los principales formularios incorporan validaciones de interfaz.
+
+Entre ellas:
+
+Validación de nombres.
+Validación y formato de DNI.
+Validación de email.
+Campos numéricos.
+Validación de datos de mascotas.
+Validación de motivo y diagnóstico de consultas.
+Feedback visual después de interactuar con campos inválidos.
+Bloqueo del submit cuando los datos obligatorios no son válidos.
+📌 Estado del proyecto
+MVP 1
+ UX Research
+ UX Design
+ User Flows
+ Wireframes
+ Design System
+ High-Fidelity Screens
+ Prototipo interactivo
+ Arquitectura Frontend
+ Desarrollo Frontend
+ BFF
+ API REST
+ Persistencia SQLite
+ Gestión de clientes
+ Gestión de mascotas
+ Gestión de turnos
+ Persistencia de estados de turnos
+ Historia clínica
+ Registro de consultas
+ Validaciones principales
+Próximas etapas
+ Revisión y sincronización final de Figma con el producto implementado.
+ Testing automatizado.
+ Product Analytics.
+ CI/CD.
+ Deploy.
+Futuras versiones
+ Dashboard administrativo.
+ Métricas de pacientes y consultas.
+ Inventario y control de stock.
+ Pet Shop.
+ Reportes operativos y comerciales.
+🚀 Estado actual
+
+MVP 1 funcionalmente completo.
+
+Los principales flujos de Recepción, Agenda, Clientes, Mascotas e Historia
+Clínica están implementados y conectados al BFF.
+
+Los datos principales del producto se almacenan en SQLite y permanecen
+disponibles después de recargar la aplicación.
+
+La siguiente etapa está enfocada en realizar una revisión final de UI,
+sincronizar Figma con la implementación y preparar el proyecto para testing,
+automatización y deploy.
+
+🛠️ Tecnologías
+Frontend
+React
+TypeScript
+React Router
+Context API
+CSS
+Backend / BFF
+Node.js
+Express
+REST API
+Persistencia
+SQLite
+node:sqlite
+Diseño
+Figma
+UX Research
+UX Design
+UI Design
+Design Systems
+Prototipado
+Herramientas
+Git
+GitHub
+Postman
+📂 Estructura general
+vete-app/
+├── bff/
+├── docs/
+│   ├── ux/
+│   └── ui/
+├── frontend/
+├── CHANGELOG.md
+└── README.md
+
+La documentación de UX/UI se mantiene separada de la implementación para
+conservar el README enfocado en la presentación general y técnica del
+producto.
+
+📈 Evolución
+
+El desarrollo y las decisiones técnicas del proyecto se documentan en:
+
+📄 CHANGELOG.md
+
+El proyecto comenzó desde la investigación y definición del problema y
+evolucionó progresivamente hacia un producto funcional con frontend, BFF y
+persistencia.
+
+👩‍💻 Autora
+
+María Laura Aristegui
+Frontend Software Engineer
+
+Proyecto personal desarrollado como parte de mi portfolio profesional.
+```
