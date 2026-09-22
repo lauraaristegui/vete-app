@@ -9,10 +9,7 @@ import { Calendar } from "../../design-system/molecules/Calendar/Calendar";
 import { PageHeader } from "../../design-system/molecules/PageHeader/PageHeader";
 import { Select } from "../../design-system/molecules/Select/Select";
 import { AppointmentSummary } from "../../design-system/organisms/AppointmentSummary/AppointmentSummary";
-import {
-  createClient,
-  createPet,
-} from "../services/client.service";
+import { createClient, createPet } from "../services/client.service";
 
 import {
   NewPatientForm,
@@ -24,7 +21,7 @@ import { createAppointment } from "../services/appointment.service";
 
 export function NewAppointmentPage() {
   const { appointments, addAppointment } = useAppointments();
-
+  const [isCreatingAppointment, setIsCreatingAppointment] = useState(false);
   // Datos del turno
   const [veterinarian, setVeterinarian] = useState("Dra. Agostina Pérez");
 
@@ -83,47 +80,50 @@ export function NewAppointmentPage() {
     setIsScheduleConfirmed(false);
   };
 
-const handleConfirmAppointment = async () => {
-  if (!patientData) return;
+  const handleConfirmAppointment = async () => {
+    if (!patientData || isCreatingAppointment) return;
 
-  try {
-    let petId = patientData.petId;
+    try {
+      setIsCreatingAppointment(true);
 
-    // Si no tiene petId, es un cliente/paciente nuevo.
-    if (!petId) {
-      const createdClient = await createClient({
-        name: patientData.ownerName,
-        dni: patientData.dni,
-        phone: patientData.phone,
-        email: patientData.email,
-        address: patientData.address,
+      let petId = patientData.petId;
+
+      // Si no tiene petId, es un cliente/paciente nuevo.
+      if (!petId) {
+        const createdClient = await createClient({
+          name: patientData.ownerName,
+          dni: patientData.dni,
+          phone: patientData.phone,
+          email: patientData.email,
+          address: patientData.address,
+        });
+
+        const createdPet = await createPet(createdClient.id, {
+          name: patientData.petName,
+          species: patientData.species,
+          breed: patientData.breed,
+          age: patientData.age,
+        });
+
+        petId = createdPet.id;
+      }
+
+      const createdAppointment = await createAppointment({
+        petId,
+        date,
+        time,
+        veterinarian,
       });
 
-      const createdPet = await createPet(createdClient.id, {
-        name: patientData.petName,
-        species: patientData.species,
-        breed: patientData.breed,
-        age: patientData.age,
-      });
+      addAppointment(createdAppointment);
 
-      petId = createdPet.id;
+      navigate("/agenda");
+    } catch (error) {
+      console.error("Error creando turno:", error);
+    } finally {
+      setIsCreatingAppointment(false);
     }
-
-    const createdAppointment = await createAppointment({
-      petId,
-      date,
-      time,
-      veterinarian,
-    });
-
-    addAppointment(createdAppointment);
-
-    navigate("/agenda");
-  } catch (error) {
-    console.error("Error creando turno:", error);
-  }
-};
-
+  };
 
   return (
     <section className="new-appointment-page">
@@ -201,6 +201,7 @@ const handleConfirmAppointment = async () => {
             ownerName={patientData.ownerName}
             dni={patientData.dni}
             species={patientData.species}
+            loading={isCreatingAppointment}
             onModify={() => {
               setIsScheduleConfirmed(false);
             }}

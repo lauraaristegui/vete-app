@@ -18,15 +18,23 @@ type AppointmentsProviderProps = {
 
 export function AppointmentsProvider({ children }: AppointmentsProviderProps) {
   const [appointments, setAppointments] = useState<Appointment[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [updatingAppointmentId, setUpdatingAppointmentId] = useState<
+    string | null
+  >(null);
 
   useEffect(() => {
     const loadAppointments = async () => {
       try {
+        setIsLoading(true);
+
         const appointmentsData = await getAppointments();
 
         setAppointments(appointmentsData);
       } catch (error) {
         console.error("Error cargando turnos:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -34,7 +42,11 @@ export function AppointmentsProvider({ children }: AppointmentsProviderProps) {
   }, []);
 
   const changeStatus = async (id: string, newStatus: AppointmentStatus) => {
+    if (updatingAppointmentId === id) return;
+
     try {
+      setUpdatingAppointmentId(id);
+
       const updatedAppointment = await updateAppointmentStatus(id, newStatus);
 
       setAppointments((currentAppointments) =>
@@ -44,6 +56,8 @@ export function AppointmentsProvider({ children }: AppointmentsProviderProps) {
       );
     } catch (error) {
       console.error("Error actualizando estado del turno:", error);
+    } finally {
+      setUpdatingAppointmentId(null);
     }
   };
 
@@ -58,6 +72,8 @@ export function AppointmentsProvider({ children }: AppointmentsProviderProps) {
     <AppointmentsContext.Provider
       value={{
         appointments,
+        isLoading,
+        updatingAppointmentId,
         changeStatus,
         addAppointment,
       }}

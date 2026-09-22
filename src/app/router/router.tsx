@@ -10,8 +10,8 @@ import { EditClientPage } from "../../features/EditClientPage/EditClientPage";
 import { AddPetPage } from "../../features/AddPetPage/AddPetPage";
 import { ClinicalHistoryPage } from "../../features/ClinicalHistoryPage/ClinicalHistoryPage";
 import { ClinicalHistoryDetailPage } from "../../features/ClinicalHistoryDetailPage/ClinicalHistoryDetailPage";
-import { NewConsultationPage } from "../../features/NewConsultationPage/NewConsultationPage";
 import { EditPetPage } from "../../features/EditPetPage/EditPetPage";
+import { NewConsultationPage } from "../../features/NewConsultationPage/NewConsultationPage";
 
 export const router = createBrowserRouter([
   {

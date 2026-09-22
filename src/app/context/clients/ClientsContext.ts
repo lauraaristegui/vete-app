@@ -3,6 +3,7 @@ import type { Client, Pet } from "../../../shared/types/client";
 
 export type ClientsContextType = {
   clients: Client[];
+  isLoading: boolean;
 
   addClient: (client: Client) => void;
 
@@ -11,16 +12,14 @@ export type ClientsContextType = {
     data: Partial<Omit<Client, "id" | "pets">>,
   ) => void;
 
-  addPet: (
-    clientId: string,
-    pet: Pet,
-  ) => void;
+  addPet: (clientId: string, pet: Pet) => void;
 
   updatePet: (
-  clientId: string,
-  petId: string,
-  petData: Partial<Pet>,
-) => void;
+    clientId: string,
+    petId: string,
+    petData: Partial<Pet>,
+  ) => void;
+
 };
 export const ClientsContext =
   createContext<ClientsContextType | undefined>(undefined);

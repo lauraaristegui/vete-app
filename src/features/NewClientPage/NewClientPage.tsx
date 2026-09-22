@@ -1,46 +1,64 @@
+import { useState } from "react";
 import { useNavigate } from "react-router";
 
 import { useClients } from "../../app/context/clients/useClients";
+
 import { PageHeader } from "../../design-system/molecules/PageHeader/PageHeader";
 
+import {
+  NewPatientForm,
+  type NewPatientData,
+} from "../../shared/components/ NewPatientForm/NewPatientForm";
+
+import {
+  createClient,
+  createPet,
+} from "../services/client.service";
 
 import "./NewClientPage.css";
-import { NewPatientForm, type NewPatientData } from "../../shared/components/ NewPatientForm/NewPatientForm";
-import { createClient, createPet } from "../services/client.service";
 
 export function NewClientPage() {
   const navigate = useNavigate();
   const { addClient } = useClients();
 
-const handleCreateClient = async (patient: NewPatientData) => {
-  try {
-    const newClient = await createClient({
-      name: patient.ownerName,
-      dni: patient.dni,
-      phone: patient.phone,
-      email: patient.email,
-      address: patient.address,
-    });
+  const [isSaving, setIsSaving] = useState(false);
 
-    const newPet = await createPet(newClient.id, {
-      name: patient.petName,
-      species: patient.species,
-      breed: patient.breed,
-      age: patient.age,
-    });
+  const handleCreateClient = async (patient: NewPatientData) => {
+    if (isSaving) return;
 
-    const clientWithPet = {
-      ...newClient,
-      pets: [newPet],
-    };
+    try {
+      setIsSaving(true);
 
-    addClient(clientWithPet);
+      const newClient = await createClient({
+        name: patient.ownerName,
+        dni: patient.dni,
+        phone: patient.phone,
+        email: patient.email,
+        address: patient.address,
+      });
 
-    navigate(`/clientes/${newClient.id}`);
-  } catch (error) {
-    console.error("Error creando cliente:", error);
-  }
-};
+      const newPet = await createPet(newClient.id, {
+        name: patient.petName,
+        species: patient.species,
+        breed: patient.breed,
+        age: patient.age,
+      });
+
+      const clientWithPet = {
+        ...newClient,
+        pets: [newPet],
+      };
+
+      addClient(clientWithPet);
+
+      navigate(`/clientes/${newClient.id}`);
+    } catch (error) {
+      console.error("Error creando cliente:", error);
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
   return (
     <div className="new-client-page">
       <PageHeader
@@ -50,6 +68,7 @@ const handleCreateClient = async (patient: NewPatientData) => {
 
       <NewPatientForm
         submitLabel="Guardar cliente"
+        loading={isSaving}
         onContinue={handleCreateClient}
       />
     </div>

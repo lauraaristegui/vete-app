@@ -27,34 +27,26 @@ type OwnerFormProps = {
   initialData?: OwnerFormData;
   submitLabel?: string;
   onSubmit: (data: OwnerFormData) => void;
+  loading?: boolean;
 };
 
 export function OwnerForm({
   initialData,
   submitLabel = "Guardar cambios",
   onSubmit,
+  loading = false,
 }: OwnerFormProps) {
-  const [name, setName] = useState(
-    initialData?.name ?? "",
-  );
+  const [name, setName] = useState(initialData?.name ?? "");
 
   const [dni, setDni] = useState(
-    initialData?.dni
-      ? formatDni(initialData.dni)
-      : "",
+    initialData?.dni ? formatDni(initialData.dni) : "",
   );
 
-  const [phone, setPhone] = useState(
-    initialData?.phone ?? "",
-  );
+  const [phone, setPhone] = useState(initialData?.phone ?? "");
 
-  const [email, setEmail] = useState(
-    initialData?.email ?? "",
-  );
+  const [email, setEmail] = useState(initialData?.email ?? "");
 
-  const [address, setAddress] = useState(
-    initialData?.address ?? "",
-  );
+  const [address, setAddress] = useState(initialData?.address ?? "");
 
   const [touched, setTouched] = useState({
     name: false,
@@ -62,22 +54,17 @@ export function OwnerForm({
     email: false,
   });
 
-  const markAsTouched = (
-    field: keyof typeof touched,
-  ) => {
+  const markAsTouched = (field: keyof typeof touched) => {
     setTouched((current) => ({
       ...current,
       [field]: true,
     }));
   };
 
-  const canSubmit =
-    isValidName(name) &&
-    isValidDni(dni) &&
-    isValidEmail(email);
+  const canSubmit = isValidName(name) && isValidDni(dni) && isValidEmail(email);
 
   const handleSubmit = () => {
-    if (!canSubmit) return;
+    if (!canSubmit || loading) return;
 
     onSubmit({
       name: name.trim(),
@@ -92,37 +79,24 @@ export function OwnerForm({
     <div className="owner-form">
       <div className="owner-form__header">
         <div className="owner-form__icon">
-          <UserRound
-            size={18}
-            strokeWidth={1.8}
-          />
+          <UserRound size={18} strokeWidth={1.8} />
         </div>
 
         <div>
           <h2>Datos del responsable</h2>
 
-          <p>
-            Actualizá la información del responsable.
-          </p>
+          <p>Actualizá la información del responsable.</p>
         </div>
       </div>
 
       <div className="owner-form__field">
-        <label htmlFor="owner-name">
-          Nombre y apellido *
-        </label>
+        <label htmlFor="owner-name">Nombre y apellido *</label>
 
         <Input
           id="owner-name"
           value={name}
-          onChange={(event) =>
-            setName(
-              onlyLetters(event.target.value),
-            )
-          }
-          onBlur={() =>
-            markAsTouched("name")
-          }
+          onChange={(event) => setName(onlyLetters(event.target.value))}
+          onBlur={() => markAsTouched("name")}
           error={
             touched.name && !isValidName(name)
               ? "Ingresá un nombre de al menos 3 letras."
@@ -134,21 +108,13 @@ export function OwnerForm({
 
       <div className="owner-form__row">
         <div className="owner-form__field">
-          <label htmlFor="owner-dni">
-            DNI *
-          </label>
+          <label htmlFor="owner-dni">DNI *</label>
 
           <Input
             id="owner-dni"
             value={dni}
-            onChange={(event) =>
-              setDni(
-                formatDni(event.target.value),
-              )
-            }
-            onBlur={() =>
-              markAsTouched("dni")
-            }
+            onChange={(event) => setDni(formatDni(event.target.value))}
+            onBlur={() => markAsTouched("dni")}
             error={
               touched.dni && !isValidDni(dni)
                 ? "Ingresá un DNI válido."
@@ -159,40 +125,27 @@ export function OwnerForm({
         </div>
 
         <div className="owner-form__field">
-          <label htmlFor="owner-phone">
-            Teléfono
-          </label>
+          <label htmlFor="owner-phone">Teléfono</label>
 
           <Input
             id="owner-phone"
             value={phone}
-            onChange={(event) =>
-              setPhone(
-                onlyNumbers(event.target.value),
-              )
-            }
+            onChange={(event) => setPhone(onlyNumbers(event.target.value))}
             inputMode="numeric"
             placeholder="Ej. 1123456789"
           />
         </div>
 
         <div className="owner-form__field">
-          <label htmlFor="owner-email">
-            Email
-          </label>
+          <label htmlFor="owner-email">Email</label>
 
           <Input
             id="owner-email"
             value={email}
-            onChange={(event) =>
-              setEmail(event.target.value)
-            }
-            onBlur={() =>
-              markAsTouched("email")
-            }
+            onChange={(event) => setEmail(event.target.value)}
+            onBlur={() => markAsTouched("email")}
             error={
-              touched.email &&
-              !isValidEmail(email)
+              touched.email && !isValidEmail(email)
                 ? "Ingresá un email válido."
                 : undefined
             }
@@ -201,16 +154,12 @@ export function OwnerForm({
         </div>
 
         <div className="owner-form__field">
-          <label htmlFor="owner-address">
-            Dirección
-          </label>
+          <label htmlFor="owner-address">Dirección</label>
 
           <Input
             id="owner-address"
             value={address}
-            onChange={(event) =>
-              setAddress(event.target.value)
-            }
+            onChange={(event) => setAddress(event.target.value)}
             placeholder="Ej. Av. San Martín 123"
           />
         </div>
@@ -220,6 +169,8 @@ export function OwnerForm({
         <Button
           variant="primary"
           disabled={!canSubmit}
+          loading={loading}
+          loadingText="Guardando..."
           onClick={handleSubmit}
         >
           {submitLabel}

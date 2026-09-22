@@ -10,12 +10,13 @@ import { ClientCard } from "../../design-system/organisms/ClientCard/ClientCard"
 
 import { SearchNoResults } from "../../shared/components/SearchNoResults/SearchNoResults";
 import { normalizeText } from "../../shared/utils/normalizeText";
+import { Loading } from "../../design-system/atoms/Loading/Loading";
 
 import "./ClientsPage.css";
 
 export function ClientsPage() {
   const navigate = useNavigate();
-  const { clients } = useClients();
+  const { clients, isLoading } = useClients();
 
   const [search, setSearch] = useState("");
 
@@ -60,27 +61,31 @@ export function ClientsPage() {
       </div>
 
       <div className="clients-page__list">
-        {search.trim() !== "" && (
-          <>
-            {filteredClients.length === 0 ? (
-              <SearchNoResults
-                search={search}
-                description="No encontramos ningún cliente que coincida con"
-                showButton={false}
-              />
-            ) : (
-              filteredClients.map((client) => (
-                <div key={client.id} className="clients-page__list-item">
-                  <ClientCard
-                    name={client.name}
-                    dni={client.dni}
-                    pets={client.pets}
-                    onView={() => navigate(`/clientes/${client.id}`)}
-                  />
-                </div>
-              ))
-            )}
-          </>
+        {isLoading ? (
+          <Loading text="Cargando clientes..." />
+        ) : (
+          search.trim() !== "" && (
+            <>
+              {filteredClients.length === 0 ? (
+                <SearchNoResults
+                  search={search}
+                  description="No encontramos ningún cliente que coincida con"
+                  showButton={false}
+                />
+              ) : (
+                filteredClients.map((client) => (
+                  <div key={client.id} className="clients-page__list-item">
+                    <ClientCard
+                      name={client.name}
+                      dni={client.dni}
+                      pets={client.pets}
+                      onView={() => navigate(`/clientes/${client.id}`)}
+                    />
+                  </div>
+                ))
+              )}
+            </>
+          )
         )}
       </div>
     </div>

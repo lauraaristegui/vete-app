@@ -11,11 +11,13 @@ import { AppointmentList } from "../../design-system/organisms/AppointmentList/A
 import { SearchNoResults } from "../../shared/components/SearchNoResults/SearchNoResults";
 import type { AppointmentStatus } from "../../shared/types/appointment";
 import { normalizeText } from "../../shared/utils/normalizeText";
+import { Loading } from "../../design-system/atoms/Loading/Loading";
 
 import "./AgendaPage.css";
 
 export function AgendaPage() {
-  const { appointments, changeStatus } = useAppointments();
+  const { appointments, changeStatus, isLoading, updatingAppointmentId } =
+    useAppointments();
 
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -108,16 +110,6 @@ export function AgendaPage() {
       <section className="agenda-page__appointments">
         <div className="agenda-page__search">
           <label htmlFor="appointment-search">Buscar turno</label>
-
-          {/* <Input
-            id="appointment-search"
-            placeholder="Buscar por paciente, responsable o DNI..."
-            value={search}
-            onChange={(event) => {
-              setSearch(event.target.value);
-              setCurrentPage(1);
-            }}
-          /> */}
           <Input
             id="appointment-search"
             placeholder="Buscar por paciente, responsable o DNI..."
@@ -127,8 +119,6 @@ export function AgendaPage() {
               setCurrentPage(1);
             }}
           />
-
-          <p>Buscando: {search}</p>
         </div>
 
         <div className="agenda-page__date-header">
@@ -149,7 +139,9 @@ export function AgendaPage() {
           </div>
         </div>
 
-        {appointmentsByDate.length === 0 ? (
+        {isLoading ? (
+          <Loading text="Cargando turnos..." />
+        ) : appointmentsByDate.length === 0 ? (
           <SearchNoResults
             title="No hay turnos reservados"
             description={`No hay turnos reservados para el ${formattedSelectedDate}.`}
@@ -166,9 +158,9 @@ export function AgendaPage() {
             appointments={paginatedAppointments}
             showActions
             onStatusChange={changeStatus}
+            updatingAppointmentId={updatingAppointmentId}
           />
         )}
-
         {totalPages > 1 && (
           <div className="agenda-page__pagination">
             <Button

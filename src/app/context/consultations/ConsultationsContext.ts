@@ -4,6 +4,9 @@ import type { Consultation } from "../../../shared/types/consultation";
 
 export type ConsultationsContextType = {
   consultations: Consultation[];
+
+  isLoading: boolean;
+
   addConsultation: (consultation: Consultation) => void;
 };
 

@@ -6,9 +6,15 @@ import type {
 
 export type AppointmentsContextType = {
   appointments: Appointment[];
-  changeStatus: (id: string, newStatus: AppointmentStatus) => Promise<void>;
+  isLoading: boolean;
+  updatingAppointmentId: string | null;
+  changeStatus: (
+    id: string,
+    newStatus: AppointmentStatus,
+  ) => Promise<void>;
   addAppointment: (appointment: Appointment) => void;
 };
 
 export const AppointmentsContext = createContext<
-  AppointmentsContextType | undefined>(undefined);
+  AppointmentsContextType | undefined
+>(undefined);

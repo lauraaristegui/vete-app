@@ -15,13 +15,14 @@ import type { AppointmentStatus } from "../../shared/types/appointment";
 
 import "./ReceptionPage.css";
 import { AppointmentList } from "../../design-system/organisms/AppointmentList/AppointmentList";
+import { Loading } from "../../design-system/atoms/Loading/Loading";
 
 export function ReceptionPage() {
   const [search, setSearch] = useState("");
 
   const navigate = useNavigate();
+  const { appointments, isLoading } = useAppointments();
 
-  const { appointments } = useAppointments();
   const { clients } = useClients();
 
   const statusPriority: Record<AppointmentStatus, number> = {
@@ -76,10 +77,14 @@ export function ReceptionPage() {
           <Link to="/agenda">Ver todos →</Link>
         </div>
 
-        <AppointmentList
-          appointments={receptionAppointments}
-          showActions={false}
-        />
+        {isLoading ? (
+          <Loading text="Cargando turnos..." />
+        ) : (
+          <AppointmentList
+            appointments={receptionAppointments}
+            showActions={false}
+          />
+        )}
       </section>
 
       {/* BÚSQUEDA */}

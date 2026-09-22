@@ -21,8 +21,8 @@ type AppointmentRowProps = {
   status: AppointmentStatus;
   onStatusChange?: (status: AppointmentStatus) => void;
   showActions?: boolean;
+  isUpdating?: boolean;
 };
-
 const petImages: Record<PetSpecies, string> = {
   dog: dogImage,
   cat: catImage,
@@ -38,6 +38,7 @@ export function AppointmentRow({
   status,
   onStatusChange,
   showActions = true,
+  isUpdating = false,
 }: AppointmentRowProps) {
   return (
     <div
@@ -47,9 +48,7 @@ export function AppointmentRow({
           : "appointment-row--without-actions"
       }`}
     >
-      <span className="appointment-row__time">
-        {time}
-      </span>
+      <span className="appointment-row__time">{time}</span>
 
       <div className="appointment-row__patient">
         <img
@@ -74,6 +73,7 @@ export function AppointmentRow({
           {status === "pending" && (
             <ActionMenu
               label="Elegir acción"
+              loading={isUpdating}
               options={[
                 {
                   label: "Recepcionar",
@@ -88,11 +88,7 @@ export function AppointmentRow({
                   value: "cancelled",
                 },
               ]}
-              onSelect={(value) =>
-                onStatusChange?.(
-                  value as AppointmentStatus,
-                )
-              }
+              onSelect={(value) => onStatusChange?.(value as AppointmentStatus)}
             />
           )}
         </div>

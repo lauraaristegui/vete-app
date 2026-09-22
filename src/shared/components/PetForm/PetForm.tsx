@@ -25,38 +25,32 @@ type PetFormProps = {
   onSubmit: (data: PetFormData) => void;
   submitLabel?: string;
   initialData?: PetFormData;
+  loading?: boolean;
 };
 
 export function PetForm({
   onSubmit,
   submitLabel = "Agregar mascota",
   initialData,
+  loading = false,
 }: PetFormProps) {
-  const [name, setName] = useState(
-    initialData?.name ?? "",
-  );
+  const [name, setName] = useState(initialData?.name ?? "");
 
   const [species, setSpecies] = useState<PetSpecies>(
     initialData?.species ?? "dog",
   );
 
-  const [breed, setBreed] = useState(
-    initialData?.breed ?? "",
-  );
+  const [breed, setBreed] = useState(initialData?.breed ?? "");
 
   const [age, setAge] = useState(
-    initialData?.age
-      ? onlyNumbers(initialData.age).slice(0, 2)
-      : "",
+    initialData?.age ? onlyNumbers(initialData.age).slice(0, 2) : "",
   );
 
   const [touched, setTouched] = useState({
     name: false,
   });
 
-  const markAsTouched = (
-    field: keyof typeof touched,
-  ) => {
+  const markAsTouched = (field: keyof typeof touched) => {
     setTouched((current) => ({
       ...current,
       [field]: true,
@@ -66,7 +60,7 @@ export function PetForm({
   const canSubmit = isValidName(name);
 
   const handleSubmit = () => {
-    if (!canSubmit) return;
+    if (!canSubmit || loading) return;
 
     onSubmit({
       name: name.trim(),
@@ -79,35 +73,23 @@ export function PetForm({
   return (
     <div className="pet-form">
       <div className="pet-form__header">
-        <div className="pet-form__icon">
-          🐾
-        </div>
+        <div className="pet-form__icon">🐾</div>
 
         <div>
           <h2>Datos de la mascota</h2>
 
-          <p>
-            Completá la información de la mascota.
-          </p>
+          <p>Completá la información de la mascota.</p>
         </div>
       </div>
 
       <div className="pet-form__field">
-        <label htmlFor="pet-name">
-          Nombre *
-        </label>
+        <label htmlFor="pet-name">Nombre *</label>
 
         <Input
           id="pet-name"
           value={name}
-          onChange={(event) =>
-            setName(
-              onlyLetters(event.target.value),
-            )
-          }
-          onBlur={() =>
-            markAsTouched("name")
-          }
+          onChange={(event) => setName(onlyLetters(event.target.value))}
+          onBlur={() => markAsTouched("name")}
           error={
             touched.name && !isValidName(name)
               ? "Ingresá un nombre de al menos 3 letras."
@@ -121,56 +103,34 @@ export function PetForm({
         <Select
           label="Especie *"
           value={species}
-          onChange={(event) =>
-            setSpecies(
-              event.target.value as PetSpecies,
-            )
-          }
+          onChange={(event) => setSpecies(event.target.value as PetSpecies)}
         >
-          <option value="dog">
-            Perro
-          </option>
+          <option value="dog">Perro</option>
 
-          <option value="cat">
-            Gato
-          </option>
+          <option value="cat">Gato</option>
 
-          <option value="rabbit">
-            Conejo
-          </option>
+          <option value="rabbit">Conejo</option>
         </Select>
 
         <div className="pet-form__field">
-          <label htmlFor="pet-breed">
-            Raza
-          </label>
+          <label htmlFor="pet-breed">Raza</label>
 
           <Input
             id="pet-breed"
             value={breed}
-            onChange={(event) =>
-              setBreed(
-                onlyLetters(event.target.value),
-              )
-            }
+            onChange={(event) => setBreed(onlyLetters(event.target.value))}
             placeholder="Ej. Golden Retriever"
           />
         </div>
 
         <div className="pet-form__field">
-          <label htmlFor="pet-age">
-            Edad
-          </label>
+          <label htmlFor="pet-age">Edad</label>
 
           <Input
             id="pet-age"
             value={age}
             onChange={(event) =>
-              setAge(
-                onlyNumbers(
-                  event.target.value,
-                ).slice(0, 2),
-              )
+              setAge(onlyNumbers(event.target.value).slice(0, 2))
             }
             inputMode="numeric"
             placeholder="Ej. 2"
@@ -183,6 +143,8 @@ export function PetForm({
         <Button
           variant="primary"
           disabled={!canSubmit}
+          loading={loading}
+          loadingText="Guardando..."
           onClick={handleSubmit}
         >
           {submitLabel}

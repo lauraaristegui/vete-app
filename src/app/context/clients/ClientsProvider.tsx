@@ -11,15 +11,23 @@ type ClientsProviderProps = {
 
 export function ClientsProvider({ children }: ClientsProviderProps) {
   const [clients, setClients] = useState<Client[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    getClients()
-      .then((clients) => {
-        setClients(clients);
-      })
-      .catch((error) => {
+    const loadClients = async () => {
+      try {
+        setIsLoading(true);
+
+        const clientsData = await getClients();
+        setClients(clientsData);
+      } catch (error) {
         console.error("Error obteniendo clientes:", error);
-      });
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadClients();
   }, []);
 
   const addClient = (client: Client) => {
@@ -68,6 +76,7 @@ export function ClientsProvider({ children }: ClientsProviderProps) {
 
   const value: ClientsContextType = {
     clients,
+    isLoading,
     addClient,
     updateClient,
     updatePet,

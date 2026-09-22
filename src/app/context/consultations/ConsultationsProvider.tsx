@@ -13,15 +13,19 @@ export function ConsultationsProvider({
   children,
 }: ConsultationsProviderProps) {
   const [consultations, setConsultations] = useState<Consultation[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const loadConsultations = async () => {
       try {
-        const consultationsData = await getConsultations();
+        setIsLoading(true);
 
+        const consultationsData = await getConsultations();
         setConsultations(consultationsData);
       } catch (error) {
         console.error("Error cargando consultas:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -39,6 +43,7 @@ export function ConsultationsProvider({
     <ConsultationsContext.Provider
       value={{
         consultations,
+        isLoading,
         addConsultation,
       }}
     >

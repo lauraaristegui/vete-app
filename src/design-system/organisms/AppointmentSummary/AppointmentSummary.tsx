@@ -18,6 +18,7 @@ type AppointmentSummaryProps = {
   species: PetSpecies;
   onConfirm: () => void;
   onModify: () => void;
+  loading?: boolean;
 };
 
 const petImages = {
@@ -36,6 +37,7 @@ export function AppointmentSummary({
   species,
   onConfirm,
   onModify,
+  loading = false,
 }: AppointmentSummaryProps) {
   return (
     <div className="appointment-summary">
@@ -75,13 +77,20 @@ export function AppointmentSummary({
       </div>
 
       <div className="appointment-summary__actions">
-        <Button variant="primary" onClick={onConfirm}>
-          Confirmar consulta
-        </Button>
+        <div className="appointment-summary__actions">
+          <Button
+            variant="primary"
+            onClick={onConfirm}
+            loading={loading}
+            loadingText="Confirmando..."
+          >
+            Confirmar consulta
+          </Button>
 
-        <Button variant="neutral" onClick={onModify}>
-          Modificar
-        </Button>
+          <Button variant="neutral" onClick={onModify} disabled={loading}>
+            Modificar
+          </Button>
+        </div>
       </div>
     </div>
   );

@@ -35,11 +35,13 @@ export type NewPatientData = {
 type NewPatientFormProps = {
   onContinue: (patient: NewPatientData) => void;
   submitLabel?: string;
+  loading?: boolean;
 };
 
 export function NewPatientForm({
   onContinue,
   submitLabel = "Continuar",
+  loading = false,
 }: NewPatientFormProps) {
   const [ownerName, setOwnerName] = useState("");
   const [dni, setDni] = useState("");
@@ -72,7 +74,7 @@ export function NewPatientForm({
     isValidName(petName);
 
   const handleContinue = () => {
-    if (!canContinue) return;
+    if (!canContinue || loading) return;
 
     const patient: NewPatientData = {
       ownerName: ownerName.trim(),
@@ -253,6 +255,8 @@ export function NewPatientForm({
         <Button
           variant="primary"
           disabled={!canContinue}
+          loading={loading}
+          loadingText="Guardando..."
           onClick={handleContinue}
         >
           {submitLabel}

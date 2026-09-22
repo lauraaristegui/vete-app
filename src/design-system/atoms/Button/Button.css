@@ -10,17 +10,6 @@ hover
 disabled */
 
 
-.button {
-  font-family: var(--font-family-primary);
-  font-size: var(--font-size-label-medium);
-  line-height: var(--line-height-label-medium);
-  font-weight: var(--font-weight-semibold);
-
-  border-radius: var(--radius-8);
-  padding: var(--spacing-8) var(--spacing-16);
-  cursor: pointer;
-}
-
 .button--primary {
   background-color: var(--color-primary-500);
   color: white;
@@ -65,15 +54,55 @@ disabled */
   border-color: var(--color-red-600);
 }
 
-.button:disabled {
+.button:disabled:not(.button--loading) {
   background-color: var(--color-neutral-200);
   color: var(--color-neutral-400);
   border-color: var(--color-neutral-200);
   cursor: not-allowed;
 }
 
+.button--loading {
+  cursor: wait;
+  opacity: 0.8;
+}
+
 .button-group {
   display: flex;
   align-items: center;
   gap: var(--spacing-8);
+}
+
+
+.button {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-label-medium);
+  line-height: var(--line-height-label-medium);
+  font-weight: var(--font-weight-semibold);
+
+  border-radius: var(--radius-8);
+  padding: var(--spacing-8) var(--spacing-16);
+
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-8);
+}
+
+.button__spinner {
+  width: 14px;
+  height: 14px;
+
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+
+  animation: button-spinner 0.7s linear infinite;
+}
+
+@keyframes button-spinner {
+  to {
+    transform: rotate(360deg);
+  }
 }

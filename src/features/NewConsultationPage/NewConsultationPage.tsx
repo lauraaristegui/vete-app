@@ -28,6 +28,8 @@ export function NewConsultationPage() {
   const [reasonTouched, setReasonTouched] = useState(false);
   const [diagnosisTouched, setDiagnosisTouched] = useState(false);
 
+  const [isSaving, setIsSaving] = useState(false);
+
   const client = clients.find((client) =>
     client.pets.some((pet) => pet.id === petId),
   );
@@ -44,7 +46,7 @@ export function NewConsultationPage() {
   ) => {
     event.preventDefault();
 
-    if (!pet || !isFormValid) return;
+    if (!pet || !isFormValid || isSaving) return;
 
     const today = new Date();
 
@@ -55,6 +57,8 @@ export function NewConsultationPage() {
     ].join("-");
 
     try {
+      setIsSaving(true);
+
       const createdConsultation = await createConsultation({
         petId: pet.id,
         date,
@@ -69,6 +73,8 @@ export function NewConsultationPage() {
       navigate(`/historia-clinica/${pet.id}`);
     } catch (error) {
       console.error("Error creando consulta:", error);
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -140,6 +146,7 @@ export function NewConsultationPage() {
           <Button
             type="button"
             variant="secondary"
+            disabled={isSaving}
             onClick={() =>
               navigate(`/historia-clinica/${pet?.id}`)
             }
@@ -150,6 +157,8 @@ export function NewConsultationPage() {
           <Button
             type="submit"
             disabled={!isFormValid}
+            loading={isSaving}
+            loadingText="Guardando..."
           >
             Guardar consulta
           </Button>

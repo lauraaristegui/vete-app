@@ -11,12 +11,14 @@ type AppointmentListProps = {
   appointments: Appointment[];
   showActions?: boolean;
   onStatusChange?: (id: string, status: AppointmentStatus) => void;
+  updatingAppointmentId?: string | null;
 };
 
 export function AppointmentList({
   appointments,
   showActions = true,
   onStatusChange,
+  updatingAppointmentId,
 }: AppointmentListProps) {
   return (
     <div className="appointment-list">
@@ -47,6 +49,7 @@ export function AppointmentList({
             dni={appointment.dni}
             status={appointment.status}
             showActions={showActions}
+            isUpdating={updatingAppointmentId === appointment.id}
             onStatusChange={(status) =>
               onStatusChange?.(appointment.id, status)
             }

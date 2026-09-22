@@ -12,6 +12,7 @@ type ActionMenuProps = {
   options: ActionMenuOption[];
   onSelect: (value: string) => void;
   iconOnly?: boolean;
+  loading?: boolean;
 };
 
 export function ActionMenu({
@@ -19,14 +20,16 @@ export function ActionMenu({
   options,
   onSelect,
   iconOnly = false,
+  loading = false,
 }: ActionMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleSelect = (value: string) => {
-    onSelect(value);
-    setIsOpen(false);
-  };
+const handleSelect = (value: string) => {
+  if (loading) return;
 
+  onSelect(value);
+  setIsOpen(false);
+};
   return (
     <div className="action-menu">
       {iconOnly ? (
@@ -41,6 +44,8 @@ export function ActionMenu({
       ) : (
         <Button
           variant="secondary"
+          loading={loading}
+          loadingText="Procesando..."
           onClick={() => setIsOpen((current) => !current)}
         >
           {label} ▾
