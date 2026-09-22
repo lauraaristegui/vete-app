@@ -13,7 +13,6 @@
 @import './molecules/PetCard/PetCard.css';
 @import './molecules/PageHeader/PageHeader.css';
 @import './molecules/Calendar/Calendar.css';
-@import './desing-system/desing-system.css';
 @import './molecules/ActionMenu/ActionMenu.css';
 @import './organisms/AppointmentRow/AppointmentRow.css';
 @import './organisms/Form/Form.css';
