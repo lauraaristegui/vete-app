@@ -13,7 +13,6 @@
 
   border: 0;
   border-bottom: 1px solid var(--color-neutral-100);
-
   border-radius: 0;
 
   font-family: var(--font-family-primary);
@@ -24,7 +23,9 @@
   border-bottom: 0;
 }
 
-/* RECEPCIÓN */
+/* =========================
+   RECEPCIÓN
+========================= */
 
 .appointment-row--without-actions {
   grid-template-columns:
@@ -37,7 +38,9 @@
   column-gap: var(--spacing-16);
 }
 
-/* AGENDA */
+/* =========================
+   AGENDA
+========================= */
 
 .appointment-row--with-actions {
   grid-template-columns:
@@ -50,6 +53,10 @@
 
   column-gap: var(--spacing-16);
 }
+
+/* =========================
+   CELDAS
+========================= */
 
 .appointment-row > span {
   min-width: 0;
@@ -65,14 +72,19 @@
   color: var(--color-neutral-700);
 }
 
+/* Hora */
+
 .appointment-row__time {
   font-weight: 600 !important;
   color: var(--color-neutral-900) !important;
 }
 
+/* Paciente */
+
 .appointment-row__patient {
   display: flex;
   align-items: center;
+
   gap: var(--spacing-8);
 
   min-width: 0;
@@ -103,15 +115,176 @@
   white-space: nowrap;
 }
 
+/* Responsable */
+
+.appointment-row__owner {
+  min-width: 0;
+
+  font-size: 12px;
+  line-height: 16px;
+
+  color: var(--color-neutral-700);
+}
+
+.appointment-row__owner > span:last-child {
+  display: block;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* DNI */
+
+.appointment-row__dni {
+  min-width: 0;
+
+  font-size: 12px;
+  line-height: 16px;
+
+  color: var(--color-neutral-700);
+}
+
+.appointment-row__dni > span:last-child {
+  display: block;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Estado */
 
 .appointment-row__status {
   display: flex;
   align-items: center;
 }
 
+/* Acción */
+
 .appointment-row__action {
   display: flex;
   align-items: center;
 
   min-width: 0;
+}
+
+/* Labels que solo usamos en mobile */
+
+.appointment-row__mobile-label {
+  display: none;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+  .appointment-row,
+  .appointment-row--without-actions,
+  .appointment-row--with-actions {
+    display: grid;
+
+    grid-template-columns: minmax(0, 1fr) auto;
+
+    grid-template-areas:
+      "time status"
+      "patient patient"
+      "owner owner"
+      "dni dni"
+      "action action";
+
+    gap: var(--spacing-12);
+
+    width: 100%;
+    min-height: 0;
+
+    padding: var(--spacing-16);
+
+    background-color: var(--color-surface);
+
+    border: 1px solid var(--color-border-soft);
+    border-radius: var(--radius-12);
+
+    box-sizing: border-box;
+  }
+
+  /* Hora */
+
+  .appointment-row__time {
+    grid-area: time;
+
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  /* Paciente */
+
+  .appointment-row__patient {
+    grid-area: patient;
+
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .appointment-row__patient-avatar {
+    width: 36px;
+    height: 36px;
+  }
+
+  /* Responsable */
+
+  .appointment-row__owner {
+    grid-area: owner;
+  }
+
+  /* DNI */
+
+  .appointment-row__dni {
+    grid-area: dni;
+  }
+
+  .appointment-row__owner,
+  .appointment-row__dni {
+    display: grid;
+
+    grid-template-columns: 100px minmax(0, 1fr);
+
+    gap: var(--spacing-8);
+
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .appointment-row__owner > span:last-child,
+  .appointment-row__dni > span:last-child {
+    overflow: visible;
+
+    text-overflow: initial;
+    white-space: normal;
+  }
+
+  .appointment-row__mobile-label {
+    display: inline;
+
+    font-weight: 500;
+
+    color: var(--color-neutral-500);
+  }
+
+  /* Estado */
+
+  .appointment-row__status {
+    grid-area: status;
+
+    justify-content: flex-end;
+  }
+
+  /* Acciones */
+
+  .appointment-row__action {
+    grid-area: action;
+
+    width: 100%;
+  }
 }

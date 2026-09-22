@@ -23,6 +23,7 @@ type AppointmentRowProps = {
   showActions?: boolean;
   isUpdating?: boolean;
 };
+
 const petImages: Record<PetSpecies, string> = {
   dog: dogImage,
   cat: catImage,
@@ -48,8 +49,12 @@ export function AppointmentRow({
           : "appointment-row--without-actions"
       }`}
     >
-      <span className="appointment-row__time">{time}</span>
+      {/* Hora */}
+      <span className="appointment-row__time">
+        {time}
+      </span>
 
+      {/* Paciente */}
       <div className="appointment-row__patient">
         <img
           className="appointment-row__patient-avatar"
@@ -60,14 +65,30 @@ export function AppointmentRow({
         <span>{petName}</span>
       </div>
 
-      <span>{ownerName}</span>
+      {/* Responsable */}
+      <div className="appointment-row__owner">
+        <span className="appointment-row__mobile-label">
+          Responsable
+        </span>
 
-      <span>{dni}</span>
+        <span>{ownerName}</span>
+      </div>
 
+      {/* DNI */}
+      <div className="appointment-row__dni">
+        <span className="appointment-row__mobile-label">
+          DNI
+        </span>
+
+        <span>{dni}</span>
+      </div>
+
+      {/* Estado */}
       <div className="appointment-row__status">
         <Status status={status} />
       </div>
 
+      {/* Acciones - solo Agenda */}
       {showActions && (
         <div className="appointment-row__action">
           {status === "pending" && (
@@ -88,7 +109,11 @@ export function AppointmentRow({
                   value: "cancelled",
                 },
               ]}
-              onSelect={(value) => onStatusChange?.(value as AppointmentStatus)}
+              onSelect={(value) =>
+                onStatusChange?.(
+                  value as AppointmentStatus,
+                )
+              }
             />
           )}
         </div>

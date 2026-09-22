@@ -8,6 +8,8 @@
 
   background-color: var(--color-neutral-50);
   box-sizing: border-box;
+  overflow-y: auto;
+
 }
 
 .sidebar__navigation {

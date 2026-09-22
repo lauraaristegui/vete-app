@@ -84,3 +84,50 @@
   line-height: 20px;
   color: var(--color-neutral-600);
 }
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 700px) {
+  .agenda-page {
+    gap: var(--spacing-16);
+  }
+
+  .agenda-page__header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .agenda-page__date-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-12);
+
+    margin-bottom: 0;
+  }
+
+.agenda-page__date-navigation {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--spacing-8);
+
+  width: 100%;
+}
+
+.agenda-page__selected-date {
+  min-width: 0;
+
+  padding: 0 var(--spacing-4);
+
+  font-size: 13px;
+  text-align: center;
+
+  white-space: normal;
+}
+
+  .agenda-page__pagination {
+    justify-content: space-between;
+  }
+}

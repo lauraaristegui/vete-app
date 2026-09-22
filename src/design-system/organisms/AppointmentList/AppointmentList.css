@@ -1,16 +1,26 @@
 .appointment-list {
   width: 100%;
+
   overflow: visible;
 
   background-color: var(--color-surface);
+
   border: 1px solid var(--color-border-soft);
   border-radius: var(--radius-12);
+
+  box-sizing: border-box;
 }
+
+/* =========================
+   HEADER
+========================= */
+
 .appointment-list__header {
   display: grid;
   align-items: center;
 
   min-height: 38px;
+
   padding: 0 var(--spacing-16);
 
   box-sizing: border-box;
@@ -49,6 +59,7 @@
 
 .appointment-list__header span {
   font-family: var(--font-family-primary);
+
   font-size: 12px;
   line-height: 16px;
   font-weight: 600;
@@ -56,6 +67,43 @@
   color: var(--color-neutral-600);
 }
 
+/* =========================
+   BODY
+========================= */
+
 .appointment-list__body {
   width: 100%;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+  .appointment-list {
+    overflow: visible;
+
+    background-color: transparent;
+
+    border: 0;
+    border-radius: 0;
+  }
+
+  /*
+   * En mobile ya no mostramos el encabezado de tabla.
+   * Cada AppointmentRow muestra sus propios labels.
+   */
+  .appointment-list__header {
+    display: none;
+  }
+
+  .appointment-list__body {
+    display: flex;
+    flex-direction: column;
+
+    gap: var(--spacing-12);
+
+    width: 100%;
+    min-width: 0;
+  }
 }

@@ -209,4 +209,8 @@
   .reception-page__search-header {
     flex-direction: column;
   }
+
+  .reception-page__search-field {
+    width: 100%;
+  }
 }
