@@ -1,6 +1,6 @@
 import type { Appointment, AppointmentStatus } from "../../shared/types/appointment";
+import { API_URL } from "../../shared/config/api.config";
 
-const API_URL = "http://localhost:3000";
 
 export type CreateAppointmentData = {
   petId: string;

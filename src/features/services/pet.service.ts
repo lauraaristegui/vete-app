@@ -1,6 +1,6 @@
 import type { Pet } from "../../shared/types/client";
 
-const API_URL = "http://localhost:3000";
+import { API_URL } from "../../shared/config/api.config";
 
 export async function updatePet(
   petId: string,

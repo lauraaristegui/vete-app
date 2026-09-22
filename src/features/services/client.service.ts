@@ -1,6 +1,5 @@
 import type { Client, Pet } from "../../shared/types/client";
-
-const API_URL = "http://localhost:3000";
+import { API_URL } from "../../shared/config/api.config";
 
 export async function getClients(): Promise<Client[]> {
   const response = await fetch(`${API_URL}/clients`);
