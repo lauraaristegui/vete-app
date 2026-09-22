@@ -11,6 +11,7 @@ export const appointmentsMock: Appointment[] = [
     dni: "32.222.222",
     status: "received",
      species: "cat",
+     veterinarianId: "1",
   },
   {
     id: "2",
@@ -22,6 +23,7 @@ export const appointmentsMock: Appointment[] = [
     dni: "36.547.658",
     status: "in-consultation",
     species: "dog",
+    veterinarianId: "1",
   },
   {
     id: "3",
@@ -33,6 +35,7 @@ export const appointmentsMock: Appointment[] = [
     dni: "38.456.789",
     status: "pending",
     species: "cat",
+    veterinarianId: "1",
   },
   {
     id: "4",
@@ -44,6 +47,7 @@ export const appointmentsMock: Appointment[] = [
     dni: "29.876.543",
     status: "pending",
     species: "rabbit",
+    veterinarianId: "1",
   },
   {
     id: "5",
@@ -55,5 +59,6 @@ export const appointmentsMock: Appointment[] = [
     dni: "34.123.456",
     status: "pending",
     species: "cat",
+    veterinarianId: "1",
   },
 ];

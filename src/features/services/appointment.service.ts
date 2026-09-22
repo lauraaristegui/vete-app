@@ -1,12 +1,14 @@
-import type { Appointment, AppointmentStatus } from "../../shared/types/appointment";
+import type {
+  Appointment,
+  AppointmentStatus,
+} from "../../shared/types/appointment";
 import { API_URL } from "../../shared/config/api.config";
-
 
 export type CreateAppointmentData = {
   petId: string;
   date: string;
   time: string;
-  veterinarian: string;
+  veterinarianId: string;
 };
 
 export async function getAppointments(): Promise<Appointment[]> {

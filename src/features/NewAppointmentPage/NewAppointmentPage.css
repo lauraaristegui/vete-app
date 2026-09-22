@@ -106,3 +106,17 @@
 .new-appointment-page__summary {
   width: 100%;
 }
+
+/* Veterinario */
+
+.new-appointment-page__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+}
+
+.new-appointment-page__veterinarian-action {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--spacing-4);
+}

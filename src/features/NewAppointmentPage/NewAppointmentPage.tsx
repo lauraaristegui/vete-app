@@ -2,28 +2,44 @@ import { useState } from "react";
 import { useNavigate, useLocation } from "react-router";
 
 import { useAppointments } from "../../app/context/Appointments/useAppointments";
+import { useVeterinarians } from "../../app/context/Veterinarians/useVeterinarians";
 
 import Button from "../../design-system/atoms/Button/Button";
+import { Loading } from "../../design-system/atoms/Loading/Loading";
 import { TimeSlot } from "../../design-system/atoms/TimeSlot/TimeSlot";
 import { Calendar } from "../../design-system/molecules/Calendar/Calendar";
 import { PageHeader } from "../../design-system/molecules/PageHeader/PageHeader";
 import { Select } from "../../design-system/molecules/Select/Select";
 import { AppointmentSummary } from "../../design-system/organisms/AppointmentSummary/AppointmentSummary";
+
 import { createClient, createPet } from "../services/client.service";
+import { createAppointment } from "../services/appointment.service";
 
 import {
   NewPatientForm,
   type NewPatientData,
 } from "../../shared/components/ NewPatientForm/NewPatientForm";
 
+import { VeterinarianForm } from "../../shared/components/VeterinarianForm/VeterinarianForm";
+
 import "./NewAppointmentPage.css";
-import { createAppointment } from "../services/appointment.service";
 
 export function NewAppointmentPage() {
   const { appointments, addAppointment } = useAppointments();
+
+  const {
+    veterinarians,
+    isLoading: isLoadingVeterinarians,
+    addVeterinarian,
+  } = useVeterinarians();
+
   const [isCreatingAppointment, setIsCreatingAppointment] = useState(false);
-  // Datos del turno
-  const [veterinarian, setVeterinarian] = useState("Dra. Agostina Pérez");
+
+  const [veterinarianId, setVeterinarianId] = useState("");
+
+  const [showVeterinarianForm, setShowVeterinarianForm] = useState(false);
+
+  const [isSavingVeterinarian, setIsSavingVeterinarian] = useState(false);
 
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
@@ -33,13 +49,19 @@ export function NewAppointmentPage() {
 
   const existingPatient = location.state?.patient ?? null;
 
-  // Control del flujo
   const [isDateConfirmed, setIsDateConfirmed] = useState(false);
-
   const [isScheduleConfirmed, setIsScheduleConfirmed] = useState(false);
 
   const [patientData, setPatientData] = useState<NewPatientData | null>(
     existingPatient,
+  );
+
+  const activeVeterinarians = veterinarians.filter(
+    (veterinarian) => veterinarian.active,
+  );
+
+  const selectedVeterinarian = veterinarians.find(
+    (veterinarian) => veterinarian.id === veterinarianId,
   );
 
   const timeSlots = [
@@ -61,11 +83,44 @@ export function NewAppointmentPage() {
     .filter(
       (appointment) =>
         appointment.date === date &&
-        appointment.veterinarian === veterinarian &&
+        appointment.veterinarianId === veterinarianId &&
         appointment.status !== "cancelled" &&
         appointment.status !== "no-show",
     )
     .map((appointment) => appointment.time);
+
+  const handleVeterinarianChange = (selectedVeterinarianId: string) => {
+    setVeterinarianId(selectedVeterinarianId);
+
+    setTime("");
+    setIsDateConfirmed(false);
+    setIsScheduleConfirmed(false);
+  };
+
+  const handleAddVeterinarian = async (name: string) => {
+    if (isSavingVeterinarian) return;
+
+    try {
+      setIsSavingVeterinarian(true);
+
+      const createdVeterinarian = await addVeterinarian(name);
+
+      // El nuevo veterinario queda seleccionado.
+      setVeterinarianId(createdVeterinarian.id);
+
+      setShowVeterinarianForm(false);
+
+      // Reiniciamos agenda porque cambió el veterinario.
+      setDate("");
+      setTime("");
+      setIsDateConfirmed(false);
+      setIsScheduleConfirmed(false);
+    } catch (error) {
+      console.error("Error creando veterinario:", error);
+    } finally {
+      setIsSavingVeterinarian(false);
+    }
+  };
 
   const handleDateChange = (selectedDate: string) => {
     setDate(selectedDate);
@@ -73,15 +128,16 @@ export function NewAppointmentPage() {
     setIsDateConfirmed(true);
     setIsScheduleConfirmed(false);
   };
+
   const handleTimeSelect = (selectedTime: string) => {
     setTime(selectedTime);
-
-    // Si cambia el horario, debe confirmarse nuevamente.
     setIsScheduleConfirmed(false);
   };
 
   const handleConfirmAppointment = async () => {
-    if (!patientData || isCreatingAppointment) return;
+    if (!patientData || !veterinarianId || isCreatingAppointment) {
+      return;
+    }
 
     try {
       setIsCreatingAppointment(true);
@@ -112,7 +168,7 @@ export function NewAppointmentPage() {
         petId,
         date,
         time,
-        veterinarian,
+        veterinarianId,
       });
 
       addAppointment(createdAppointment);
@@ -131,17 +187,50 @@ export function NewAppointmentPage() {
 
       {/* Veterinario */}
       <div className="new-appointment-page__content">
-        <Select
-          label="Veterinario"
-          value={veterinarian}
-          onChange={(event) => setVeterinarian(event.target.value)}
-        >
-          <option value="Dra. Agostina Pérez">Dra. Agostina Pérez</option>
-        </Select>
+        {isLoadingVeterinarians ? (
+          <Loading text="Cargando veterinarios..." />
+        ) : (
+          <>
+            <Select
+              label="Veterinario"
+              value={veterinarianId}
+              disabled={showVeterinarianForm}
+              onChange={(event) => handleVeterinarianChange(event.target.value)}
+            >
+              <option value="">Seleccionar veterinario</option>
+
+              {activeVeterinarians.map((veterinarian) => (
+                <option key={veterinarian.id} value={veterinarian.id}>
+                  {veterinarian.name}
+                </option>
+              ))}
+            </Select>
+
+            {!showVeterinarianForm && (
+              <div className="new-appointment-page__veterinarian-action">
+                <Button
+                  type="button"
+                  variant="secondary"
+                  onClick={() => setShowVeterinarianForm(true)}
+                >
+                  + Agregar veterinario
+                </Button>
+              </div>
+            )}
+
+            {showVeterinarianForm && (
+              <VeterinarianForm
+                loading={isSavingVeterinarian}
+                onSubmit={handleAddVeterinarian}
+                onCancel={() => setShowVeterinarianForm(false)}
+              />
+            )}
+          </>
+        )}
       </div>
 
       {/* Calendario + horarios */}
-      {!isScheduleConfirmed && (
+      {veterinarianId && !showVeterinarianForm && !isScheduleConfirmed && (
         <div className="new-appointment-page__schedule">
           <div className="new-appointment-page__date">
             <h2>Fecha del turno</h2>
@@ -191,10 +280,10 @@ export function NewAppointmentPage() {
       )}
 
       {/* Resumen final */}
-      {isScheduleConfirmed && patientData && (
+      {isScheduleConfirmed && patientData && selectedVeterinarian && (
         <div className="new-appointment-page__summary">
           <AppointmentSummary
-            veterinarian={veterinarian}
+            veterinarian={selectedVeterinarian.name}
             date={date}
             time={time}
             petName={patientData.petName}

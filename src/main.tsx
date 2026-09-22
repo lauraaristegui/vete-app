@@ -8,15 +8,18 @@ import "./design-system/index.css";
 import { AppointmentsProvider } from "./app/context/Appointments/AppointmentsProvider";
 import { ClientsProvider } from "./app/context/clients/ClientsProvider";
 import { ConsultationsProvider } from "./app/context/consultations/ConsultationsProvider";
+import { VeterinariansProvider } from "./app/context/Veterinarians/VeterinariansProvider";
 
 createRoot(document.getElementById("root")!).render(
-<StrictMode>
-  <AppointmentsProvider>
-    <ClientsProvider>
-      <ConsultationsProvider>
-        <RouterProvider router={router} />
-      </ConsultationsProvider>
-    </ClientsProvider>
-  </AppointmentsProvider>
-</StrictMode>
+  <StrictMode>
+    <AppointmentsProvider>
+      <ClientsProvider>
+        <ConsultationsProvider>
+          <VeterinariansProvider>
+            <RouterProvider router={router} />
+          </VeterinariansProvider>
+        </ConsultationsProvider>
+      </ClientsProvider>
+    </AppointmentsProvider>
+  </StrictMode>,
 );

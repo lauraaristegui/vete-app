@@ -4,7 +4,7 @@ export type AppointmentStatus =
   | "in-consultation"
   | "completed"
   | "cancelled"
-  | "no-show"
+  | "no-show";
 
 export type PetSpecies = "dog" | "cat" | "rabbit";
 
@@ -17,5 +17,7 @@ export type Appointment = {
   dni: string;
   status: AppointmentStatus;
   species: PetSpecies;
+
+  veterinarianId: string;
   veterinarian: string;
 };
