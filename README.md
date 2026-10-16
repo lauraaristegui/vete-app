@@ -1,12 +1,16 @@
+## 🌐 App desplegada
+
+El frontend de VeteApp ya está desplegado en Netlify:
+
+👉 [Abrir VeteApp](https://vete-app.netlify.app/)
+
 ## 🚀 Roadmap
 
-VeteApp se desarrolla de forma incremental, comenzando con un MVP enfocado
-en validar los principales flujos operativos de una veterinaria.
+VeteApp se desarrolla de forma incremental, comenzando con un MVP enfocado en validar los principales flujos operativos de una veterinaria.
 
 ### ✅ MVP 1 — Gestión interna
 
-La primera versión está orientada al trabajo diario del personal de la
-veterinaria.
+La primera versión está orientada al trabajo diario del personal de la veterinaria.
 
 Incluye:
 
@@ -21,15 +25,18 @@ Incluye:
 - Persistencia de datos.
 - Diseño responsive para desktop, tablet y mobile.
 
-### 🔜 MVP 2 — Portal veterinario
+### 🔜 MVP 2 — Pet Shop y portal por roles
 
-La segunda etapa transformará VeteApp en un portal con distintos niveles
-de acceso según el tipo de usuario.
+Los próximos pasos son incorporar el Pet Shop y agregar los roles de Administrador, Veterinario / Recepcionista y Cliente, con funcionalidades y permisos específicos para cada tipo de usuario.
+
+#### 🛍️ Pet Shop
+
+- Incorporación del módulo de Pet Shop.
+- Gestión de productos y stock desde el portal del administrador.
 
 #### 👩‍💼 Administrador
 
-El administrador contará con herramientas para la gestión y análisis del
-negocio:
+El administrador contará con herramientas para la gestión y análisis del negocio:
 
 - Dashboard administrativo.
 - Métricas de clientes y actividad diaria.
@@ -50,8 +57,7 @@ Mantendrá las funcionalidades operativas desarrolladas durante el MVP 1:
 
 #### 🐾 Cliente
 
-Los clientes tendrán un portal de autogestión con acceso limitado a la
-información relacionada con sus mascotas.
+Los clientes tendrán un portal de autogestión con acceso limitado a la información relacionada con sus mascotas.
 
 Podrán:
 
@@ -62,23 +68,6 @@ Podrán:
 - Recibir recordatorios antes del turno.
 - Consultar la historia clínica de sus mascotas.
 
-### ☁️ Evolución técnica
+#### 🎨 Diseño UX/UI
 
-El MVP 2 también incluirá una evolución de la arquitectura del proyecto.
-
-Está previsto incorporar servicios de AWS para trabajar conceptos como:
-
-- Autenticación y autorización por roles.
-- Arquitectura serverless.
-- APIs.
-- Persistencia de datos.
-- Procesamiento de eventos.
-- Notificaciones y tareas programadas.
-- Infraestructura cloud.
-
-La arquitectura definitiva y la estrategia de persistencia serán definidas
-a partir de los requerimientos y patrones de acceso del MVP 2.
-
-Antes del desarrollo se realizará una nueva etapa de UX/UI en Figma para
-diseñar los flujos correspondientes a Administrador, Veterinario /
-Recepcionista y Cliente.
+Antes del desarrollo del MVP 2 se realizará una nueva etapa de UX/UI en Figma para diseñar los flujos del Pet Shop y de los roles Administrador, Veterinario / Recepcionista y Cliente.
